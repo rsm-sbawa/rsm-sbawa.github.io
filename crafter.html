@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory Optimization for Crafter.com | Simar Bawa</title><meta name="description" content="Crafter&#x27;s system logged out-of-stock months as zero sales. Every forecast built on that history learned to expect too little, so the best sellers kept running out.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head><body>
+<header class="nav"><div class="wrap navin">
+<a class="brand" href="../index.html"><span class="mono">SB</span>Simar Bawa</a>
+<nav aria-label="Main"><a href="../index.html#about">About</a><a href="../index.html#experience">Experience</a><a href="../index.html#projects">Projects</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></nav>
+<a class="btn sm" href="../Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
+<main class="wrap detail">
+<a class="back" href="../index.html#projects">&larr; Back to projects</a>
+<h1>Inventory Optimization for Crafter.com</h1><p class="lead">MSBA capstone for an online craft retailer. I led a team of 4.</p>
+<div class="row"><span class="pill">Forecasting and risk</span><span class="pill st client">Client project</span><span class="pill">2026</span></div>
+<div class="pai">
+<section><h2><span class="ic">01</span>Problem</h2><p>Crafter&#x27;s system logged out-of-stock months as zero sales. Every forecast built on that history learned to expect too little, so the best sellers kept running out.</p></section>
+<section><h2><span class="ic">02</span>Approach</h2><p>Integrated 6 data sources (176 products, 564K+ order lines), reconstructed 360 stockout months, then compared XGBoost, SARIMA, Ridge and a naive baseline on held-out months.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Recovered about 6% of hidden demand for A-class products. XGBoost won (out-of-sample R² 0.48, MAPE about 12%), feeding a budget-constrained buy list with a projected 3.8x return.</p></section></div>
+<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>3.8x</b><span>projected return on a $15K inventory budget</span></div></div>
+<h2 class="h2">What I did</h2><ul class="det"><li>Built the demand reconstruction so stockout months were filled with estimated demand instead of zeros.</li><li>Ran the model comparison on months the models never saw, so the winner was chosen on honest accuracy.</li><li>Turned the forecast into a buy list under a $15K budget, plus an interactive dashboard and an Excel planning toolkit the client&#x27;s team can run without us.</li></ul>
+<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>SQL</span><span>XGBoost</span><span>SARIMA</span><span>Tableau</span><span>Excel</span></div>
+<nav class="pn"><a href="survey.html">&larr; Sydney Rental Housing Survey</a><a href="h1b.html">H-1B Sponsorship Insights Dashboards &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>

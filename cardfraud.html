@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Transaction Fraud Detection | Simar Bawa</title><meta name="description" content="Card fraud has to be caught from spending patterns, and a model that only looks good on training data fails on next month&#x27;s transactions.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head><body>
+<header class="nav"><div class="wrap navin">
+<a class="brand" href="../index.html"><span class="mono">SB</span>Simar Bawa</a>
+<nav aria-label="Main"><a href="../index.html#about">About</a><a href="../index.html#experience">Experience</a><a href="../index.html#projects">Projects</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></nav>
+<a class="btn sm" href="../Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
+<main class="wrap detail">
+<a class="back" href="../index.html#projects">&larr; Back to projects</a>
+<h1>Card Transaction Fraud Detection</h1><p class="lead">Fraud Analytics. Individual project on 98,161 card transactions.</p>
+<div class="row"><span class="pill">Forecasting and risk</span><span class="pill st">Completed</span></div>
+<div class="pai">
+<section><h2><span class="ic">01</span>Problem</h2><p>Card fraud has to be caught from spending patterns, and a model that only looks good on training data fails on next month&#x27;s transactions.</p></section>
+<section><h2><span class="ic">02</span>Approach</h2><p>Built 2,644 candidate velocity and spending variables, selected 20, and tuned 25 configurations across 5 model families, judging each on a later time period.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Random forest caught 57.8% of fraud in the riskiest 3% and 66.5% in the riskiest 5%, about $165K of fraud on the holdout (78.6% of its fraud dollars).</p></section></div>
+<h2 class="h2">Results</h2><figure class="fig"><img src="../img/cardfraud_models.svg" alt="Train, test and out-of-time results for the best version of each model family."><figcaption>Train, test and out-of-time results for the best version of each model family.</figcaption></figure>
+<h2 class="h2">What I did</h2><ul class="det"><li>Showed overfitting directly: deeper trees kept improving on training data while results on later months fell.</li><li>Picked random forest because it held up best on later data, even though XGBoost scored slightly higher on the test split.</li></ul>
+<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>scikit-learn</span><span>Random forest</span><span>XGBoost</span></div>
+<nav class="pn"><a href="intuit.html">&larr; Intuit QuickBooks Upgrade Campaign</a><a href="smobile.html">S-Mobile Churn and Retention Plan &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>

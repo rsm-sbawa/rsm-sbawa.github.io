@@ -1,318 +1,209 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simar Bawa | Business and Data Analyst</title>
-<meta name="description" content="Simar Bawa, business and data analyst. MS Business Analytics, UC San Diego, December 2026. Forecasting, fraud and churn models, customer targeting, Tableau dashboards and applied AI.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#F5F7FA;
-  --ink:#182B49;
-  --ink-soft:#4A5B75;
-  --rule:#D6DDE7;
-  --gold:#C69214;
-  --gold-soft:#F3E3BC;
-  --white:#FFFFFF;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--ink);text-decoration-color:var(--gold);text-underline-offset:3px;text-decoration-thickness:2px}
-a:hover{color:#0E1B30;text-decoration-color:var(--ink)}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-
-header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
-header.top .mark{font-weight:600;text-decoration:none}
-header.top nav a{margin-left:22px;text-decoration:none;color:var(--ink-soft)}
-header.top nav a:hover{color:var(--ink)}
-
-.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:56px 0 72px;border-bottom:1px solid var(--rule)}
-.hero h1{font:600 clamp(44px,6vw,72px)/1.02 "Literata",Georgia,serif;letter-spacing:-.02em;margin:0 0 22px}
-.hero p.lede{font-size:20px;line-height:1.5;color:var(--ink);max-width:30ch;margin:0 0 14px}
-.hero p.sub{color:var(--ink-soft);max-width:44ch;margin:0 0 28px}
-.actions{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;font-size:15px;text-decoration:none;border:2px solid var(--ink)}
-.btn.primary{background:var(--ink);color:var(--white)}
-.btn.primary:hover{background:#0E1B30;color:var(--white)}
-.btn.ghost{color:var(--ink)}
-.btn.ghost:hover{background:var(--white)}
-
-figure.chart{margin:0;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:22px 22px 16px}
-figure.chart svg{width:100%;height:auto;display:block}
-figure.chart figcaption{font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin-top:12px}
-figure.chart figcaption strong{color:var(--ink)}
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;white-space:nowrap;font-size:13.5px;color:var(--ink-soft);margin-bottom:8px}
-.legend span::before{content:"";display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:7px;background:var(--ink-soft)}
-.legend .rec::before{background:var(--gold);height:4px}
-.legend .raw::before{background:repeating-linear-gradient(90deg,var(--ink-soft) 0 5px,transparent 5px 9px)}
-#recovered{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.8s .4s ease-out forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-
-section{padding:72px 0;border-bottom:1px solid var(--rule)}
-section h2{font:600 32px/1.15 "Literata",Georgia,serif;margin:0 0 8px;letter-spacing:-.01em}
-section .intro{color:var(--ink-soft);max-width:60ch;margin:0 0 36px}
-
-.about{display:grid;grid-template-columns:1fr 1.4fr;gap:56px}
-.about p{max-width:62ch;margin:0 0 16px}
-.facts{list-style:none;padding:0;margin:0;font-size:15.5px}
-.facts li{padding:12px 0;border-top:1px solid var(--rule)}
-.facts li:last-child{border-bottom:1px solid var(--rule)}
-.facts b{display:block;font-weight:600}
-.facts span{color:var(--ink-soft)}
-
-.projects{display:grid;gap:0}
-.project{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:30px 0;border-top:1px solid var(--rule)}
-.project:last-child{border-bottom:1px solid var(--rule)}
-.project .num{font:600 44px/1 "Literata",Georgia,serif;color:var(--ink)}
-.project .num small{display:block;font:500 13.5px/1.4 "Public Sans",sans-serif;color:var(--ink-soft);margin-top:8px;max-width:20ch}
-.project h3{font:600 21px/1.3 "Literata",Georgia,serif;margin:0 0 6px}
-.project .ctx{font-size:14.5px;color:var(--ink-soft);margin:0 0 10px}
-.project p{margin:0;max-width:64ch}
-.tools{margin-top:12px;font-size:14px;color:var(--ink-soft)}
-
-ol.timeline{list-style:none;margin:0;padding:0;position:relative}
-ol.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--rule)}
-ol.timeline li{position:relative;padding:0 0 34px 40px;display:grid;grid-template-columns:1fr auto;column-gap:24px}
-ol.timeline li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
-ol.timeline li:first-child::before{background:var(--gold);border-color:var(--gold)}
-ol.timeline h3{font:600 19px/1.35 "Literata",Georgia,serif;margin:0}
-ol.timeline .where{color:var(--ink-soft);font-size:15px;margin:2px 0 8px}
-ol.timeline .when{font-size:14.5px;color:var(--ink-soft);white-space:nowrap;padding-top:3px}
-ol.timeline p{grid-column:1 / -1;margin:0;max-width:68ch}
-
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
-.skills h3{font:600 18px/1.3 "Literata",Georgia,serif;margin:0 0 10px}
-.skills p{margin:0;color:var(--ink-soft);font-size:15.5px}
-
-.contact{border-bottom:0;padding-bottom:40px}
-.contact .big{font:600 clamp(28px,4vw,40px)/1.15 "Literata",Georgia,serif;margin:0 0 18px;max-width:22ch}
-.contact ul{list-style:none;padding:0;margin:0 0 28px;font-size:17px}
-.contact li{margin:6px 0}
-footer{padding:28px 0 48px;font-size:14px;color:var(--ink-soft)}
-
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr;gap:40px;padding-top:28px}
-  .about{grid-template-columns:1fr;gap:28px}
-  .project{grid-template-columns:1fr;gap:12px}
-  .skills{grid-template-columns:1fr;gap:24px}
-  header.top nav{display:none}
-}
-@media (max-width:480px){
-  body{font-size:16px}
-  .wrap{padding:0 16px}
-  ol.timeline li{grid-template-columns:1fr}
-  ol.timeline .when{padding-top:0}
-}
-
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.card{background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;min-width:0}
-.card.featured{border-top:4px solid var(--gold)}
-.card .tag{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
-.card h3{font:600 21px/1.3 "Literata",Georgia,serif;margin:0 0 4px}
-.card .ctx{font-size:14px;color:var(--ink-soft);margin:0 0 14px}
-.card .stat{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.card .stat b{font:600 34px/1 "Literata",Georgia,serif;white-space:nowrap}
-.card .stat span{font-size:14px;line-height:1.4;color:var(--ink-soft)}
-.card .sum{margin:0 0 14px;font-size:16px}
-figure.mini{margin:0 0 14px;padding:14px 14px 10px;background:var(--paper);border-radius:8px}
-figure.mini .ct{font-size:13.5px;font-weight:600;color:var(--ink);margin:0 0 8px}
-figure.mini svg{width:100%;height:auto;display:block}
-figure.mini .note{font-size:13.5px;color:var(--ink-soft);margin:6px 0 0;line-height:1.45}
-svg .cl{font:500 13px "Public Sans",sans-serif;fill:#4A5B75}
-svg .cv{font:600 13px "Public Sans",sans-serif;fill:#4A5B75}
-svg .cv.hi{fill:#182B49}
-svg .fl1{font:600 12.5px "Public Sans",sans-serif}
-svg .fl2{font:400 10px "Public Sans",sans-serif}
-table.t{width:100%;border-collapse:collapse;font-size:14.5px;margin:0 0 14px}
-table.t th{text-align:left;font-weight:500;color:var(--ink-soft);padding:8px 0;border-bottom:1px solid var(--rule)}
-table.t td{text-align:right;font-weight:600;padding:8px 0;border-bottom:1px solid var(--rule);white-space:nowrap}
-.card details{margin:0 0 10px;font-size:15px}
-.card summary{cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink);padding:4px 0}
-.card summary::marker{color:var(--gold)}
-.card details ul{margin:8px 0 0;padding-left:18px}
-.card details li{margin:0 0 6px}
-.bars{display:grid;gap:8px}
-.br{display:grid;grid-template-columns:minmax(110px,38%) 1fr;align-items:center;gap:10px;font-size:13.5px}
-.bl{color:var(--ink-soft);text-align:right;line-height:1.25}
-.bt{display:grid;grid-template-columns:1fr 74px;align-items:center;gap:8px;min-width:0}
-.tk{display:block;min-width:0}
-.bt i{display:block;height:18px;border-radius:3px;background:#9AA8BC}
-.bt b{font-weight:600;color:var(--ink-soft);white-space:nowrap}
-.br.hi .bt i{background:var(--gold)}
-.br.hi .bl,.br.hi .bt b{color:var(--ink);font-weight:600}
-@media (max-width:480px){.br{grid-template-columns:minmax(96px,40%) 1fr;font-size:13px}}
-.card ul.open{margin:0 0 12px;padding-left:18px;font-size:15px}
-.card ul.open li{margin:0 0 7px}
-.card .tools{margin:auto 0 0;padding-top:8px;font-size:13.5px;color:var(--ink-soft)}
-.more-h{margin-top:64px!important}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
-.chip{font:500 14px "Public Sans",sans-serif;padding:8px 14px;border-radius:999px;border:1.5px solid var(--rule);background:var(--white);color:var(--ink);cursor:pointer}
-.chip:hover{border-color:var(--ink)}
-.chip.on{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.card[hidden]{display:none}
-@media (max-width:860px){.grid{grid-template-columns:1fr}}
-@media (max-width:480px){.card{padding:20px 16px 16px}.card .stat b{font-size:28px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <a class="mark" href="#">Simar Bawa</a>
-    <nav aria-label="Sections">
-      <a href="#work">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-  <div class="hero">
-    <div>
-      <h1>Simar Bawa</h1>
-      <p class="lede">Business and data analyst. I build forecasts, dashboards and automations that people actually use to make decisions.</p>
-      <p class="sub">MS Business Analytics (STEM), UC San Diego, graduating December 2026. Available to start in January 2027 and open to relocating anywhere in the US.</p>
-      <div class="actions">
-        <a class="btn primary" href="Simar_Bawa_Resumee.pdf">Download resume (PDF)</a>
-        <a class="btn ghost" href="mailto:simarbawa2001@gmail.com">Email me</a>
-      </div>
-    </div>
-
-    <figure class="chart" aria-labelledby="chartcap">
-      <div class="legend" aria-hidden="true"><span class="raw">Recorded sales</span><span class="rec">Reconstructed demand</span></div>
-      <svg viewBox="0 0 520 260" role="img" aria-label="Line chart: recorded monthly sales drop to zero during stockouts, while reconstructed demand stays steady through those months.">
-        <g stroke="#D6DDE7" stroke-width="1">
-          <line x1="40" y1="30" x2="510" y2="30"/><line x1="40" y1="90" x2="510" y2="90"/><line x1="40" y1="150" x2="510" y2="150"/><line x1="40" y1="210" x2="510" y2="210"/>
-        </g>
-        <rect x="216" y="20" width="60" height="196" fill="#F3E3BC" opacity=".55"/>
-        <rect x="392" y="20" width="40" height="196" fill="#F3E3BC" opacity=".55"/>
-        <text x="246" y="236" text-anchor="middle" font-family="Public Sans" font-size="12" fill="#4A5B75">stockout</text>
-        <text x="412" y="236" text-anchor="middle" font-family="Public Sans" font-size="12" fill="#4A5B75">stockout</text>
-        <polyline fill="none" stroke="#4A5B75" stroke-width="2" stroke-dasharray="6 5" points="40,120 80,104 120,112 160,92 200,100 236,210 256,210 290,96 330,84 370,98 404,210 420,210 450,88 510,80"/>
-        <polyline id="recovered" fill="none" stroke="#C69214" stroke-width="3.5" stroke-linejoin="round" points="40,120 80,104 120,112 160,92 200,100 236,94 256,90 290,96 330,84 370,98 404,90 420,92 450,88 510,80"/>
-        <text x="40" y="254" font-family="Public Sans" font-size="12" fill="#4A5B75">months</text>
-        <text x="510" y="254" text-anchor="end" font-family="Public Sans" font-size="12" fill="#4A5B75">illustrative shape</text>
-      </svg>
-      <figcaption id="chartcap"><strong>The finding behind my capstone.</strong> Crafter.com's system recorded out-of-stock months as zero sales, so every forecast learned to expect too little. Reconstructing those months recovered about 6% of hidden demand for the best-selling products.</figcaption>
-    </figure>
-  </div>
-
-  <section id="about" aria-labelledby="about-h">
-    <div class="about">
-      <div>
-        <h2 id="about-h">Why I do this</h2>
-      </div>
-      <div>
-        <p>I studied International Relations and Sociology at the University of Sydney. What moved me into analytics was watching my father run his business without the data he needed, and seeing businesses around us close for the same reason.</p>
-        <p>Since then I have worked across grocery retail, compliance, consulting and digital transformation in Australia and the US. The common thread is simple: find where the numbers are misleading people, fix it, and hand over something a team can keep using without me.</p>
-        <ul class="facts">
-          <li><b>UC San Diego, Rady School of Management</b><span>MS Business Analytics (STEM), GPA 3.75, July 2025 to December 2026</span></li>
-          <li><b>The University of Sydney</b><span>BA, International Relations and Sociology (Double Major), 2023</span></li>
-          <li><b>Work authorization</b><span>F-1 with OPT from January 2027, eligible for the 24-month STEM OPT extension</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="work" aria-labelledby="work-h">
-    <h2 id="work-h">Featured projects</h2>
-    <p class="intro">Graduate, client and independent work. Every number below comes from my own reports and is measured against a baseline or a holdout period, so the result means something.</p>
-    <div class="grid">
-<article class="card featured" data-cat="forecast" id="crafter"><p class="tag">Forecasting and risk</p><h3>Inventory optimization for Crafter.com</h3><p class="ctx">MSBA capstone, client consulting project. Team lead, team of 4, 2026.</p><div class="stat"><b>3.8x</b><span>projected return on a $15K inventory budget</span></div><p class="sum">Crafter&#x27;s system recorded out-of-stock months as zero sales, so every forecast learned to expect too little. I led the team that fixed the demand history and turned it into a buy list the client can run.</p><ul class="open"><li>Integrated 6 data sources covering 176 products and 564K+ order line items.</li><li>Reconstructed 360 stockout months and recovered about 6% of hidden demand for the best-selling (A-class) products.</li><li>XGBoost forecast (out-of-sample R² 0.48, MAPE about 12%) beat SARIMA, Ridge and a naive baseline.</li><li>Delivered a budget-constrained buy list, an interactive dashboard and an Excel planning toolkit.</li></ul><p class="tools">Python, SQL, XGBoost, Tableau, Excel</p></article>
-<article class="card featured" data-cat="bi" id="h1b"><p class="tag">BI and data engineering</p><h3>H-1B sponsorship insights dashboards</h3><p class="ctx">Business Intelligence course, Tableau. Team of 5. I did analytical modeling and designed the Policy Trends dashboard.</p><div class="stat"><b>14 yrs</b><span>of USCIS H-1B employer data, FY2009 to FY2022</span></div><p class="sum">Three Tableau dashboards built for two real decisions: an HR director deciding whether to sponsor, and an F-1 student deciding which employers to target.</p><figure class="mini"><figcaption class="ct">How the Employer Reliability Index ranks sponsors (worked example, not real employers)</figcaption><div class="bars" role="img" aria-label="Worked example of the reliability index: an employer with 3 petitions and 100 percent approval scores 1.10, one with 40 petitions at 92 percent scores 3.39, and one with 500 petitions at 95 percent scores 5.90."><div class="br"><span class="bl">A: 3 filed, 100%</span><span class="bt"><span class="tk"><i style="width:16.6%"></i></span><b>1.10</b></span></div><div class="br"><span class="bl">B: 40 filed, 92%</span><span class="bt"><span class="tk"><i style="width:51.3%"></i></span><b>3.39</b></span></div><div class="br hi"><span class="bl">C: 500 filed, 95%</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>5.90</b></span></div></div><p class="note">Index = approval rate x ln(petitions), built as a Tableau FIXED LOD expression. A perfect record on 3 petitions no longer outranks a large, consistent sponsor.</p></figure><details><summary>What I did</summary><ul><li>Merged 14 annual USCIS files in Python and pandas, standardized columns and removed invalid and military postal codes.</li><li>Policy Trends dashboard: approval and denial rates over time, annotated with the 2017 executive order, the 2018 rise in evidence requests and 2020 COVID restrictions. New petitions were hit hardest when policy tightened.</li><li>Geography: state approval-rate map plus a ranked table of top cities (New York, Seattle, Chicago, Plano, San Francisco).</li><li>Employers and industries: reliability ranking, 2-digit NAICS industry table and an employer-by-industry heatmap.</li></ul></details><p class="tools">Tableau (LOD expressions, calculated fields), Python, pandas</p></article>
-<article class="card featured" data-cat="forecast" id="appfraud"><p class="tag">Forecasting and risk</p><h3>Application fraud detection</h3><p class="ctx">Fraud Analytics coursework, individual.</p><div class="stat"><b>$5.3M</b><span>estimated net savings on the 2-month holdout</span></div><p class="sum">Ranked 1 million credit card and phone applications by fraud risk so a review team catches the most fraud for the least effort.</p><figure class="mini"><figcaption class="ct">Share of fraud caught when reviewing the riskiest 3% of applications (out-of-time data)</figcaption><div class="bars" role="img" aria-label="Fraud caught in the top 3 percent: random review 3 percent, logistic regression 56.9, random forest 58.2, XGBoost 58.5, LightGBM 58.9."><div class="br"><span class="bl">Random review</span><span class="bt"><span class="tk"><i style="width:4.3%"></i></span><b>3.0%</b></span></div><div class="br"><span class="bl">Logistic regression</span><span class="bt"><span class="tk"><i style="width:81.3%"></i></span><b>56.9%</b></span></div><div class="br"><span class="bl">Random forest</span><span class="bt"><span class="tk"><i style="width:83.1%"></i></span><b>58.2%</b></span></div><div class="br"><span class="bl">XGBoost</span><span class="bt"><span class="tk"><i style="width:83.6%"></i></span><b>58.5%</b></span></div><div class="br hi"><span class="bl">LightGBM (chosen)</span><span class="bt"><span class="tk"><i style="width:84.1%"></i></span><b>58.9%</b></span></div></div></figure><details><summary>What I did</summary><ul><li>Data: 1,000,000 applications, 14,393 fraud cases (1.44%). Found and neutralized placeholder values (one birth date appeared 126,568 times).</li><li>Built 1,841 candidate identity-linking and velocity variables, then cut them to 20 with a filter and wrapper selection.</li><li>Chose LightGBM for the best out-of-time result and the smallest test-to-holdout drop; it catches about 20 times what random review would.</li><li>Set a 1.5% review cutoff from cost curves ($4,000 per missed fraud, $100 per false alarm).</li></ul></details><p class="tools">Python, LightGBM, scikit-learn, feature selection</p></article>
-<article class="card featured" data-cat="marketing" id="tuango"><p class="tag">Marketing and experiments</p><h3>Tuango: who should get the deal message?</h3><p class="ctx">Customer Analytics coursework, individual.</p><div class="stat"><b>8x</b><span>more profit than messaging every customer, on actual rollout results</span></div><p class="sum">Decided which of 397,252 app users should receive a karaoke deal, then checked the decision against what really happened when the deal went out.</p><figure class="mini"><figcaption class="ct">Profit on the actual rollout (RMB)</figcaption><div class="bars" role="img" aria-label="Actual rollout profit: messaging everyone earned 111,713 RMB; messaging only customers above the breakeven response rate earned 887,423 RMB."><div class="br"><span class="bl">Message everyone</span><span class="bt"><span class="tk"><i style="width:11.2%"></i></span><b>111,712</b></span></div><div class="br hi"><span class="bl">Above breakeven only</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>887,423</b></span></div></div><p class="note">Return on marketing spend rose from 3.1% to 56.6%.</p></figure><details><summary>What I did</summary><ul><li>Logistic regression for who buys, linear regression for how much they spend.</li><li>Breakeven response rate of about 9 to 10%; 174,126 customers scored above it.</li><li>Validated on the real rollout data, not just the model&#x27;s own projections.</li></ul></details><p class="tools">Python, pyrsm, Polars, plotnine</p></article>
-<article class="card featured" data-cat="marketing" id="intuit"><p class="tag">Marketing and experiments</p><h3>Intuit QuickBooks upgrade campaign</h3><p class="ctx">Customer Analytics, team project (Group 30).</p><div class="stat"><b>$5.03M</b><span>projected profit for the second mail wave</span></div><p class="sum">Chose which small businesses to mail an upgrade offer, picking the model by profit rather than accuracy.</p><figure class="mini"><figcaption class="ct">Test-set profit, mailing the top 20% of ranked businesses</figcaption><div class="bars" role="img" aria-label="Test-set profit: logistic regression 23,655 dollars, neural network 29,655 dollars."><div class="br"><span class="bl">Logistic regression</span><span class="bt"><span class="tk"><i style="width:71.2%"></i></span><b>$23,655</b></span></div><div class="br hi"><span class="bl">Neural network</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>$29,655</b></span></div></div><p class="note">AUC 0.708 (logistic) vs 0.747 (neural network). $6.59 profit per piece mailed, scaled to 763,334 businesses.</p></figure><details><summary>What I did</summary><ul><li>Strongest signals: past upgraders, number of past orders, product version and recency.</li><li>Restricted the mailing to the top 20% so every piece clears the breakeven cost.</li></ul></details><p class="tools">Python, pyrsm, neural networks, logistic regression</p></article>
-<article class="card featured" data-cat="marketing" id="fitech"><p class="tag">Marketing and experiments</p><h3>FiTech: testing credit card offers</h3><p class="ctx">Customer Analytics, team project (Group 30). Two-round market simulation.</p><div class="stat"><b>$877K</b><span>total simulation profit across test and rollout</span></div><p class="sum">Designed a test of 12 card offers across 3 credit-risk segments, then rolled the winners out to the remaining 606,000 prospects.</p><figure class="mini"><figcaption class="ct">Profit by round (actual simulation results)</figcaption><div class="bars" role="img" aria-label="Round 1 test profit 31,174 dollars; Round 2 rollout profit 846,122 dollars."><div class="br"><span class="bl">Round 1: test</span><span class="bt"><span class="tk"><i style="width:3.3%"></i></span><b>$31,174</b></span></div><div class="br hi"><span class="bl">Round 2: rollout</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>$846,122</b></span></div></div><p class="note">Rollout came in at $846K against an $835K forecast. About 23,800 new cardholders worth $1.27M in lifetime value.</p></figure><details><summary>What I did</summary><ul><li>Showed the historical campaign data was not usable on its own: offers weren&#x27;t randomized and market conditions had changed.</li><li>Ran a full test of all 36 offer and segment cells with 4,000 prospects each (144,000 total).</li><li>Picked each segment&#x27;s winner by expected profit per email (response rate x lifetime value minus $0.50).</li></ul></details><p class="tools">Python, Polars, statsmodels, experiment design</p></article>
-    </div>
-    <h2 class="more-h" id="more-h">More projects</h2>
-    <div class="chips" role="group" aria-label="Filter projects by type"><button type="button" class="chip on" data-f="all" aria-pressed="true">All</button><button type="button" class="chip" data-f="forecast" aria-pressed="false">Forecasting and risk</button><button type="button" class="chip" data-f="marketing" aria-pressed="false">Marketing and experiments</button><button type="button" class="chip" data-f="bi" aria-pressed="false">BI and data engineering</button><button type="button" class="chip" data-f="ai" aria-pressed="false">AI and NLP</button><button type="button" class="chip" data-f="research" aria-pressed="false">Research and health</button></div>
-    <div class="grid" id="more">
-<article class="card" data-cat="marketing" id="smobile"><p class="tag">Marketing and experiments</p><h3>S-Mobile churn and retention plan</h3><p class="ctx">Customer Analytics, team project (Group 30).</p><div class="stat"><b>0.711</b><span>AUC, random forest (vs 0.686 logistic)</span></div><p class="sum">Predicted which subscribers would leave, found what drives it and sized retention offers for a 1 million subscriber base.</p><figure class="mini"><figcaption class="ct">Top churn drivers (permutation importance)</figcaption><div class="bars" role="img" aria-label="Permutation importance: handset age 0.049, overage 0.030, retired 0.022, change in minutes 0.013, minutes of use 0.010."><div class="br hi"><span class="bl">Handset age</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>0.049</b></span></div><div class="br hi"><span class="bl">Overage charges</span><span class="bt"><span class="tk"><i style="width:54.7%"></i></span><b>0.030</b></span></div><div class="br"><span class="bl">Retired customers</span><span class="bt"><span class="tk"><i style="width:40.1%"></i></span><b>0.022</b></span></div><div class="br"><span class="bl">Change in minutes</span><span class="bt"><span class="tk"><i style="width:23.7%"></i></span><b>0.013</b></span></div><div class="br"><span class="bl">Minutes of use</span><span class="bt"><span class="tk"><i style="width:18.2%"></i></span><b>0.010</b></span></div></div></figure><details><summary>What I did</summary><ul><li>Calibrated predictions to the real 2% monthly churn rate.</li><li>Designed targeted offers (handset upgrades, overage caps, service recovery) and valued them against a 5-year customer lifetime value of about SGD 1,000.</li></ul></details><p class="tools">Python, random forest, partial dependence</p></article>
-<article class="card" data-cat="research" id="peer"><p class="tag">Research and health</p><h3>Peer comparison experiment</h3><p class="ctx">Graduate research project, team of 3.</p><div class="stat"><b>44%</b><span>of the treatment group noticed the nudge</span></div><p class="sum">A randomized Qualtrics experiment: does showing people how others performed make them more accurate?</p><figure class="mini"><figcaption class="ct">Mean task accuracy by group (n = 20 each)</figcaption><div class="bars" role="img" aria-label="Mean accuracy: control 82.7 percent, treatment 86.8 percent."><div class="br"><span class="bl">Control</span><span class="bt"><span class="tk"><i style="width:82.7%"></i></span><b>82.7%</b></span></div><div class="br hi"><span class="bl">Saw peer results</span><span class="bt"><span class="tk"><i style="width:86.8%"></i></span><b>86.8%</b></span></div></div><p class="note">A 4.1-point lift, not significant (p = 0.35). Self-reported effort was slightly lower in the treatment group (2.50 vs 2.81, p = 0.21).</p></figure><details><summary>What I did</summary><ul><li>Designed the randomization, 11 counting tasks, effort and difficulty scales and a manipulation check.</li><li>Key finding: most of the treatment group didn&#x27;t remember seeing the peer information, so the nudge needs a stronger design. Specified a 200+ person follow-up.</li></ul></details><p class="tools">Qualtrics, Python, t-tests, Excel</p></article>
-<article class="card" data-cat="forecast" id="cardfraud"><p class="tag">Forecasting and risk</p><h3>Card transaction fraud detection</h3><p class="ctx">Fraud Analytics coursework, individual.</p><div class="stat"><b>66.5%</b><span>of fraud caught reviewing the riskiest 5% of transactions</span></div><p class="sum">Scored 98,161 card transactions for fraud risk and tested every model on a later time period it never saw.</p><figure class="mini"><figcaption class="ct">Fraud caught in the riskiest 3%, best model per family (out-of-time data)</figcaption><div class="bars" role="img" aria-label="Out-of-time fraud caught in top 3 percent: logistic 49.6, LightGBM 53.5, decision tree 54.2, XGBoost 54.4, random forest 57.8."><div class="br"><span class="bl">Logistic regression</span><span class="bt"><span class="tk"><i style="width:70.9%"></i></span><b>49.6%</b></span></div><div class="br"><span class="bl">LightGBM</span><span class="bt"><span class="tk"><i style="width:76.4%"></i></span><b>53.5%</b></span></div><div class="br"><span class="bl">Decision tree</span><span class="bt"><span class="tk"><i style="width:77.4%"></i></span><b>54.2%</b></span></div><div class="br"><span class="bl">XGBoost</span><span class="bt"><span class="tk"><i style="width:77.7%"></i></span><b>54.4%</b></span></div><div class="br hi"><span class="bl">Random forest (chosen)</span><span class="bt"><span class="tk"><i style="width:82.6%"></i></span><b>57.8%</b></span></div></div></figure><details><summary>What I did</summary><ul><li>Built 2,644 candidate velocity and spending-pattern variables and selected 20.</li><li>About $165K of fraud prevented on the holdout, 78.6% of its fraud dollars.</li></ul></details><p class="tools">Python, scikit-learn, random forest, XGBoost</p></article>
-<article class="card" data-cat="bi" id="spark"><p class="tag">BI and data engineering</p><h3>Big data on AWS: Spark and SageMaker</h3><p class="ctx">Big Data Analytics coursework.</p><div class="stat"><b>59%</b><span>faster with 3 worker nodes instead of 1</span></div><p class="sum">Processed 4 million Amazon reviews with PySpark on AWS EMR, and trained, tuned and deployed an XGBoost model on SageMaker.</p><figure class="mini"><figcaption class="ct">Average runtime, 4M reviews (seconds, 3 runs each)</figcaption><div class="bars" role="img" aria-label="Average runtime on 4 million reviews: 139.6 seconds with 1 worker, 56.9 seconds with 3 workers."><div class="br"><span class="bl">1 worker node</span><span class="bt"><span class="tk"><i style="width:89.3%"></i></span><b>139.6s</b></span></div><div class="br hi"><span class="bl">3 worker nodes</span><span class="bt"><span class="tk"><i style="width:36.4%"></i></span><b>56.9s</b></span></div></div></figure><details><summary>What I did</summary><ul><li>Spark pipeline on EMR: cleaning, tokenizing and counting words across 4,027,011 reviews, written back to S3.</li><li>SageMaker: XGBoost income classifier on 1.25M Census records, removed a leaking earnings column, ran hyperparameter tuning and served predictions from a live endpoint.</li></ul></details><p class="tools">PySpark, AWS EMR, S3, SageMaker, XGBoost</p></article>
-<article class="card" data-cat="bi" id="snowflake"><p class="tag">BI and data engineering</p><h3>Procure-to-pay ETL pipeline in Snowflake</h3><p class="ctx">SQL and data warehousing coursework, team of 3.</p><div class="stat"><b>End to end</b><span>from raw files to a governed materialized view</span></div><p class="sum">Loaded purchase order, invoice and supplier files into Snowflake and built the views finance teams query.</p><figure class="mini"><figcaption class="ct">Pipeline</figcaption><svg viewBox="0 0 460 92" role="img" aria-label="Pipeline: stage raw files, load with PUT and COPY INTO, model procure-to-pay tables, enrich with a weather join, serve through a materialized view."><rect x="0.0" y="14" width="80.8" height="64" rx="6" fill="#FFFFFF" stroke="#182B49" stroke-width="1.5"/><text x="40.4" y="41" text-anchor="middle" class="fl1" fill="#182B49">Stage</text><text x="40.4" y="60" text-anchor="middle" class="fl2" fill="#182B49">raw files</text><path d="M82.8 46 l9 0 m-5 -4 l5 4 l-5 4" stroke="#C69214" stroke-width="2" fill="none"/><rect x="94.8" y="14" width="80.8" height="64" rx="6" fill="#FFFFFF" stroke="#182B49" stroke-width="1.5"/><text x="135.2" y="41" text-anchor="middle" class="fl1" fill="#182B49">Load</text><text x="135.2" y="60" text-anchor="middle" class="fl2" fill="#182B49">PUT, COPY INTO</text><path d="M177.6 46 l9 0 m-5 -4 l5 4 l-5 4" stroke="#C69214" stroke-width="2" fill="none"/><rect x="189.6" y="14" width="80.8" height="64" rx="6" fill="#FFFFFF" stroke="#182B49" stroke-width="1.5"/><text x="230.0" y="41" text-anchor="middle" class="fl1" fill="#182B49">Model</text><text x="230.0" y="60" text-anchor="middle" class="fl2" fill="#182B49">P2P tables</text><path d="M272.4 46 l9 0 m-5 -4 l5 4 l-5 4" stroke="#C69214" stroke-width="2" fill="none"/><rect x="284.4" y="14" width="80.8" height="64" rx="6" fill="#FFFFFF" stroke="#182B49" stroke-width="1.5"/><text x="324.8" y="41" text-anchor="middle" class="fl1" fill="#182B49">Enrich</text><text x="324.8" y="60" text-anchor="middle" class="fl2" fill="#182B49">weather join</text><path d="M367.2 46 l9 0 m-5 -4 l5 4 l-5 4" stroke="#C69214" stroke-width="2" fill="none"/><rect x="379.2" y="14" width="80.8" height="64" rx="6" fill="#182B49" stroke="#182B49" stroke-width="1.5"/><text x="419.6" y="41" text-anchor="middle" class="fl1" fill="#FFFFFF">Serve</text><text x="419.6" y="60" text-anchor="middle" class="fl2" fill="#FFFFFF">materialized view</text></svg></figure><details><summary>What I did</summary><ul><li>Role-based access so each user group sees only what it should.</li><li>Joined external weather data to supplier activity for analysis.</li></ul></details><p class="tools">Snowflake, SQL, Python</p></article>
-<article class="card" data-cat="research" id="health"><p class="tag">Research and health</p><h3>Healthcare treatment cost-effectiveness</h3><p class="ctx">Healthcare Analytics coursework.</p><div class="stat"><b>$36,900</b><span>per QALY for combined hypertension treatment</span></div><p class="sum">Markov models and decision trees that compare treatments on cost and health outcomes.</p><table class="t"><tbody><tr><th scope="row">Hypertension, combined treatment</th><td>$36,900 per QALY</td></tr><tr><th scope="row">HIV PrEP</th><td>$1,216 per life year</td></tr><tr><th scope="row">Appendectomy</th><td>$11,881 per life year</td></tr></tbody></table><details><summary>What I did</summary><ul><li>Type 2 diabetes microsimulation comparing SGLT2 inhibitors, GLP-1 drugs and traditional medication, with patient-level risk equations, 3% discounting and tornado sensitivity analysis.</li><li>Group decision trees for chest pain, HIV PrEP and appendectomy.</li></ul></details><p class="tools">TreeAge Pro, Excel</p></article>
-<article class="card" data-cat="forecast" id="nyc"><p class="tag">Forecasting and risk</p><h3>NYC property assessment anomaly detection</h3><p class="ctx">Fraud Analytics coursework, individual.</p><div class="stat"><b>1.04M</b><span>properties scored for unusual assessments</span></div><p class="sum">Unsupervised search for mis-assessed properties in New York City&#x27;s valuation data, with no fraud labels to learn from.</p><ul class="open"><li>Cleaned 1,070,994 records, excluded 26,502 non-comparable government and institutional properties and imputed missing fields by tax class, borough and building class.</li><li>Engineered 29 value-per-size variables, reduced them to 5 principal components (about 67% of variance) and combined a distance score with an autoencoder.</li></ul><p class="tools">Python, PCA, autoencoder</p></article>
-<article class="card" data-cat="research" id="exportmap"><p class="tag">Research and health</p><h3>ExportMap: export market finder</h3><p class="ctx">Team project, team of 4.</p><div class="stat"><b>7</b><span>public datasets merged into one country view</span></div><p class="sum">A tool that ranks countries as export markets for small businesses, using children&#x27;s clothing as the test product.</p><ul class="open"><li>Standardized country names and ISO codes, aligned years and filled gaps across 7 sources.</li><li>Built a 0 to 1 Market Opportunity Score from economic, demographic, trade, tariff and logistics factors.</li><li>GDP per capita model improved from R² 0.775 to 0.796 after feature refinement.</li></ul><p class="tools">Python, regression, data integration</p></article>
-<article class="card" data-cat="ai" id="recsys"><p class="tag">AI and NLP</p><h3>Book recommender system</h3><p class="ctx">Web Mining and Recommender Systems coursework.</p><div class="stat"><b>3</b><span>models: would-read, rating and genre</span></div><p class="sum">Predicted whether a reader will pick up a book, how they will rate it and what genre a review describes.</p><ul class="open"><li>Matrix factorization with user and book bias terms for ratings.</li><li>TF-IDF word and character features with a linear SVM for genre.</li><li>Item-to-item similarity recommender on Amazon reviews; added features cut a beer-strength classifier&#x27;s error from 16.1% to 14.3%.</li></ul><p class="tools">Python, scikit-learn, matrix factorization, NLP</p></article>
-<article class="card" data-cat="ai" id="rag"><p class="tag">AI and NLP</p><h3>Product assistant with retrieval-augmented generation</h3><p class="ctx">MSBA elective, team project, 2026.</p><div class="stat"><b>88%</b><span>answer accuracy on a 40-question test set</span></div><p class="sum">A RAG assistant over product data that retrieves the right documents and calls tools, scored against a ground-truth test set.</p><p class="tools">LlamaIndex, Claude, tool calling, Python</p></article>
-<article class="card" data-cat="ai" id="agent"><p class="tag">AI and NLP</p><h3>Live assignment-checking AI agent</h3><p class="ctx">Workshop project, solo.</p><div class="stat"><b>89%</b><span>accuracy checking assignments</span></div><p class="sum">A live agent that reviews assignments and returns feedback, automating a manual checking workflow.</p><p class="tools">Claude, LangChain, Python</p></article>
-<article class="card" data-cat="research" id="survey"><p class="tag">Research and health</p><h3>Sydney rental housing survey</h3><p class="ctx">Sociology research project, University of Sydney.</p><div class="stat"><b>Survey</b><span>design for a study on rising rents</span></div><p class="sum">Designed the survey for a research project on rising rental housing costs in Sydney: where the habit of asking good questions started.</p><p class="tools">Survey design</p></article>
-    </div>
-  </section>
-
-  <section id="experience" aria-labelledby="exp-h">
-    <h2 id="exp-h">Experience</h2>
-    <p class="intro">Most recent first.</p>
-    <ol class="timeline">
-      <li>
-        <div><h3>Data and Business Insights Analyst</h3><p class="where">Supabarn, Sydney</p></div>
-        <span class="when">Mar to Jul 2025</span>
-        <p>Ran pricing and competitive analysis that cut markdown costs by 10%. Built Power BI and SQL dashboards that reduced forecast error by 18% and saved 10+ hours a week. Handled inbound and outbound customer calls.</p>
-      </li>
-      <li>
-        <div><h3>Product and Data Analyst (Contract)</h3><p class="where">Intertek SAI Global, Sydney</p></div>
-        <span class="when">May to Nov 2024</span>
-        <p>Automated risk reporting with SQL, Python and Power Query, saving $250K in staff time. Helped migrate compliance data out of Salesforce and validated 100+ migrated reports, cutting audit preparation time by 35%.</p>
-      </li>
-      <li>
-        <div><h3>AI and Digital Transformation Intern (Part-time)</h3><p class="where">Sequent Global Technologies, New Jersey (remote)</p></div>
-        <span class="when">Jan to Oct 2024</span>
-        <p>Automated client workflows, improving efficiency by 28% and response times by 35%. Led HubSpot and Microsoft Teams rollouts with workshops that raised adoption by 40%.</p>
-      </li>
-      <li>
-        <div><h3>Business Strategy Analyst Intern (Part-time)</h3><p class="where">BPM Vision, Sydney (remote)</p></div>
-        <span class="when">Oct 2023 to Sep 2024</span>
-        <p>Analyzed 1,000+ customer feedback records to guide planogram changes that raised client retention by 12%. Wrote training documentation that cut ramp-up time by 25%.</p>
-      </li>
-      <li>
-        <div><h3>Retail Strategy and Operations Assistant (Part-time)</h3><p class="where">Lovisa, Sydney</p></div>
-        <span class="when">Feb 2023 to Feb 2024</span>
-        <p>Automated KPI reporting for 50+ stores, lifting reporting efficiency by 30%, and supported a 15% lift in campaign engagement.</p>
-      </li>
-    </ol>
-  </section>
-
-  <section id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <p class="intro">Tools I use every week, and the work I use them for.</p>
-    <div class="skills">
-      <div><h3>Data and code</h3><p>SQL, Python (pandas, Polars), R, Excel, Power Query, Snowflake, PySpark, AWS (EMR, S3, SageMaker)</p></div>
-      <div><h3>Dashboards and research</h3><p>Power BI, Tableau (LOD expressions), Google Analytics, Salesforce, HubSpot, Qualtrics, A/B test design</p></div>
-      <div><h3>Modeling and AI</h3><p>Forecasting (XGBoost, SARIMA), fraud and churn models (LightGBM, random forest), customer targeting, recommender systems, RAG with LlamaIndex, agents with LangChain and Claude, TreeAge</p></div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact" aria-labelledby="contact-h">
-    <h2 id="contact-h" class="big">Hiring for an analyst role starting in 2027? Let's talk.</h2>
-    <ul>
-      <li>Email: <a href="mailto:simarbawa2001@gmail.com">simarbawa2001@gmail.com</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/in/simar-bawa-8979701a9">linkedin.com/in/simar-bawa-8979701a9</a></li>
-      <li>Phone: <a href="tel:+18588287924">(858) 828-7924</a></li>
-    </ul>
-    <a class="btn primary" href="Simar_Bawa_Resumee.pdf">Download resume (PDF)</a>
-  </section>
-  </main>
-
-  <footer>Simar Bawa, San Diego, California.</footer>
+<title>Simar Bawa | Business and Data Analyst</title><meta name="description" content="Simar Bawa, business and data analyst. MS Business Analytics, UC San Diego, December 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="wrap navin">
+<a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
+<nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
+<a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
+<main>
+<section class="wrap hero">
+<div class="htxt">
+<p class="eyebrow">Business and Data Analyst &middot; MS Business Analytics, UC San Diego</p>
+<h1>I turn messy business data into decisions people can act on.</h1>
+<p class="lede">Forecasting, fraud and churn models, customer targeting and Tableau dashboards. Graduating December 2026, available from January 2027 and open to relocating anywhere in the US.</p>
+<div class="actions"><a class="btn" href="#projects">See my projects</a><a class="btn ghost" href="Simar_Bawa_Resumee.pdf">Download resume</a></div>
 </div>
-<script>
-(function(){
-  var chips=document.querySelectorAll('.chip'),cards=document.querySelectorAll('#more .card');
-  chips.forEach(function(c){c.addEventListener('click',function(){
-    var f=c.getAttribute('data-f');
-    chips.forEach(function(x){var on=x===c;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});
-    cards.forEach(function(k){k.hidden=!(f==='all'||k.getAttribute('data-cat')===f);});
-  });});
-})();
-</script>
-</body>
-</html>
+<a class="hfig" href="projects/h1b.html"><img src="img/h1b_dashboard_1.jpg" alt="My Tableau dashboard of H-1B approval trends"><span>My H-1B Policy Trends dashboard in Tableau &rarr;</span></a>
+</section>
+<section class="wrap stats"><div><b>$5.3M</b><span>fraud savings estimated on a holdout</span></div><div><b>8x</b><span>campaign profit from targeting, on real rollout data</span></div><div><b>14 yrs</b><span>of H-1B data in Tableau dashboards</span></div><div><b>3.8x</b><span>projected return for a client&#x27;s inventory budget</span></div></section>
+
+<section class="wrap block" id="about"><div class="two">
+<h2>Why I do this</h2>
+<div><p>I studied International Relations and Sociology at the University of Sydney. What moved me into analytics was watching my father run his business without the data he needed, and seeing businesses around us close for the same reason.</p>
+<p>Since then I have worked across grocery retail, compliance, consulting and digital transformation in Australia and the US. The common thread: find where the numbers are misleading people, fix it, and hand over something a team can keep using without me.</p>
+<ul class="facts"><li><b>UC San Diego, Rady School of Management</b><span>MS Business Analytics (STEM), GPA 3.75, Jul 2025 to Dec 2026</span></li>
+<li><b>The University of Sydney</b><span>BA, International Relations and Sociology (Double Major), 2023</span></li>
+<li><b>Work authorization</b><span>F-1 with OPT from January 2027, eligible for the 24-month STEM OPT extension</span></li></ul></div></div></section>
+
+<section class="wrap block" id="experience"><h2>Experience</h2><ol class="tl"><li><div class="eh"><div><h3>Data and Business Insights Analyst</h3><p class="where">Supabarn, Sydney</p></div><span class="when">Mar to Jul 2025</span></div><p>Ran pricing and competitive analysis that cut markdown costs by 10%. Built Power BI and SQL dashboards that reduced forecast error by 18% and saved 10+ hours a week. Handled inbound and outbound customer calls.</p></li><li><div class="eh"><div><h3>Product and Data Analyst (Contract)</h3><p class="where">Intertek SAI Global, Sydney</p></div><span class="when">May to Nov 2024</span></div><p>Automated risk reporting with SQL, Python and Power Query, saving $250K in staff time. Helped migrate compliance data out of Salesforce and validated 100+ migrated reports, cutting audit preparation time by 35%.</p></li><li><div class="eh"><div><h3>AI and Digital Transformation Intern (Part-time)</h3><p class="where">Sequent Global Technologies, New Jersey (remote)</p></div><span class="when">Jan to Oct 2024</span></div><p>Automated client workflows, improving efficiency by 28% and response times by 35%. Led HubSpot and Microsoft Teams rollouts with workshops that raised adoption by 40%.</p></li><li><div class="eh"><div><h3>Business Strategy Analyst Intern (Part-time)</h3><p class="where">BPM Vision, Sydney (remote)</p></div><span class="when">Oct 2023 to Sep 2024</span></div><p>Analyzed 1,000+ customer feedback records to guide planogram changes that raised client retention by 12%. Wrote training documentation that cut ramp-up time by 25%.</p></li><li><div class="eh"><div><h3>Retail Strategy and Operations Assistant (Part-time)</h3><p class="where">Lovisa, Sydney</p></div><span class="when">Feb 2023 to Feb 2024</span></div><p>Automated KPI reporting for 50+ stores, lifting reporting efficiency by 30%, and supported a 15% lift in campaign engagement.</p></li></ol></section>
+
+<section class="wrap block" id="projects"><h2>Projects</h2>
+<p class="intro">18 projects from client work, graduate courses and my own builds. Each chart is drawn from my own project data and reports.</p>
+<div class="chips" role="group" aria-label="Filter projects"><button type="button" class="chip on" data-f="all" aria-pressed="true">All</button><button type="button" class="chip" data-f="forecast" aria-pressed="false">Forecasting and risk</button><button type="button" class="chip" data-f="marketing" aria-pressed="false">Marketing analytics</button><button type="button" class="chip" data-f="bi" aria-pressed="false">BI and data engineering</button><button type="button" class="chip" data-f="ai" aria-pressed="false">AI and NLP</button><button type="button" class="chip" data-f="research" aria-pressed="false">Research and health</button></div>
+<div class="grid"><article class="card" data-cat="forecast">
+<a class="cover" href="projects/crafter.html" aria-label="Inventory Optimization for Crafter.com details"><div class="thumb stat"><b>3.8x</b><span>projected return on a $15K inventory budget</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">Forecasting and risk</span><span class="pill st client">Client project</span></div>
+<h3><a href="projects/crafter.html">Inventory Optimization for Crafter.com</a></h3>
+<p class="sub">MSBA capstone for an online craft retailer. I led a team of 4.</p>
+<h4>Problem</h4><p>Crafter&#x27;s system logged out-of-stock months as zero sales. Every forecast built on that history learned to expect too little, so the best sellers kept running out.</p>
+<h4>Impact</h4><p>Recovered about 6% of hidden demand for A-class products. XGBoost won (out-of-sample R² 0.48, MAPE about 12%), feeding a budget-constrained buy list with a projected 3.8x return.</p>
+<div class="tools"><span>Python</span><span>SQL</span><span>XGBoost</span><span>SARIMA</span><span>Tableau</span></div>
+<a class="btn wide" href="projects/crafter.html">View details</a></div></article>
+<article class="card" data-cat="bi">
+<a class="cover" href="projects/h1b.html" aria-label="H-1B Sponsorship Insights Dashboards details"><div class="thumb img light"><img src="img/h1b_thumb.jpg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">BI and data engineering</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/h1b.html">H-1B Sponsorship Insights Dashboards</a></h3>
+<p class="sub">Business Intelligence project in Tableau. Team of 5. I did the analytical modeling and designed the Policy Trends dashboard.</p>
+<h4>Problem</h4><p>An HR director needs to know when sponsoring is risky, and an F-1 student needs to know which employers reliably sponsor. 14 years of USCIS files answer both, but not in their raw form.</p>
+<h4>Impact</h4><p>Showed new petitions are hit hardest when policy tightens, mapped approval rates by state and city, and replaced a misleading approval-rate ranking with a Reliability Index that favors large, consistent sponsors.</p>
+<div class="tools"><span>Tableau</span><span>LOD expressions</span><span>Python</span><span>pandas</span></div>
+<a class="btn wide" href="projects/h1b.html">View details</a></div></article>
+<article class="card" data-cat="forecast">
+<a class="cover" href="projects/appfraud.html" aria-label="Application Fraud Detection details"><div class="thumb img"><img src="img/appfraud_models.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Forecasting and risk</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/appfraud.html">Application Fraud Detection</a></h3>
+<p class="sub">Fraud Analytics. Individual project on 1,000,000 credit card and phone applications.</p>
+<h4>Problem</h4><p>A review team can only check a small share of applications. The model has to rank 1 million applications so the riskiest 3% hold as much fraud as possible.</p>
+<h4>Impact</h4><p>LightGBM catches 58.9% of fraud in the top 3%, about 20 times random review. A 1.5% review cutoff saves an estimated $5.3M net on the 2-month holdout.</p>
+<div class="tools"><span>Python</span><span>LightGBM</span><span>scikit-learn</span><span>Feature engineering</span></div>
+<a class="btn wide" href="projects/appfraud.html">View details</a></div></article>
+<article class="card" data-cat="marketing">
+<a class="cover" href="projects/tuango.html" aria-label="Tuango: Who Should Get the Deal? details"><div class="thumb img"><img src="img/tuango_rollout.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Marketing analytics</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/tuango.html">Tuango: Who Should Get the Deal?</a></h3>
+<p class="sub">Customer Analytics. Individual project for a Chinese deals app.</p>
+<h4>Problem</h4><p>Every push message costs money. Tuango needed to know which of 397,252 users to send a karaoke deal so the campaign makes a profit.</p>
+<h4>Impact</h4><p>On actual rollout results, targeting earned 887K RMB vs 112K RMB for messaging everyone, and return on marketing spend rose from 3.1% to 56.6%.</p>
+<div class="tools"><span>Python</span><span>pyrsm</span><span>Polars</span><span>plotnine</span></div>
+<a class="btn wide" href="projects/tuango.html">View details</a></div></article>
+<article class="card" data-cat="marketing">
+<a class="cover" href="projects/fitech.html" aria-label="FiTech: Testing Credit Card Offers details"><div class="thumb img"><img src="img/fitech_heatmap.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Marketing analytics</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/fitech.html">FiTech: Testing Credit Card Offers</a></h3>
+<p class="sub">Customer Analytics, team project (Group 30). Two-round market simulation with 750,000 prospects.</p>
+<h4>Problem</h4><p>FiTech had 12 card offers and 3 credit-risk segments. Past campaigns couldn&#x27;t say which offer wins because they weren&#x27;t randomized and the market had changed.</p>
+<h4>Impact</h4><p>$877K total profit. The rollout earned $846K against an $835K forecast and brought in about 23,800 cardholders worth $1.27M in lifetime value.</p>
+<div class="tools"><span>Python</span><span>Polars</span><span>statsmodels</span><span>Experiment design</span></div>
+<a class="btn wide" href="projects/fitech.html">View details</a></div></article>
+<article class="card" data-cat="marketing">
+<a class="cover" href="projects/intuit.html" aria-label="Intuit QuickBooks Upgrade Campaign details"><div class="thumb img"><img src="img/intuit_profit.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Marketing analytics</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/intuit.html">Intuit QuickBooks Upgrade Campaign</a></h3>
+<p class="sub">Customer Analytics, team project (Group 30).</p>
+<h4>Problem</h4><p>Intuit wanted to mail a second wave of upgrade offers only to small businesses likely to respond.</p>
+<h4>Impact</h4><p>Neural network earned $29,655 on the test set vs $23,655, or $6.59 per piece mailed, projecting about $5.03M across 763,334 businesses.</p>
+<div class="tools"><span>Python</span><span>pyrsm</span><span>Neural networks</span><span>Logistic regression</span></div>
+<a class="btn wide" href="projects/intuit.html">View details</a></div></article>
+<article class="card" data-cat="forecast">
+<a class="cover" href="projects/cardfraud.html" aria-label="Card Transaction Fraud Detection details"><div class="thumb img"><img src="img/cardfraud_models.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Forecasting and risk</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/cardfraud.html">Card Transaction Fraud Detection</a></h3>
+<p class="sub">Fraud Analytics. Individual project on 98,161 card transactions.</p>
+<h4>Problem</h4><p>Card fraud has to be caught from spending patterns, and a model that only looks good on training data fails on next month&#x27;s transactions.</p>
+<h4>Impact</h4><p>Random forest caught 57.8% of fraud in the riskiest 3% and 66.5% in the riskiest 5%, about $165K of fraud on the holdout (78.6% of its fraud dollars).</p>
+<div class="tools"><span>Python</span><span>scikit-learn</span><span>Random forest</span><span>XGBoost</span></div>
+<a class="btn wide" href="projects/cardfraud.html">View details</a></div></article>
+<article class="card" data-cat="marketing">
+<a class="cover" href="projects/smobile.html" aria-label="S-Mobile Churn and Retention Plan details"><div class="thumb img"><img src="img/smobile_drivers.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Marketing analytics</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/smobile.html">S-Mobile Churn and Retention Plan</a></h3>
+<p class="sub">Customer Analytics, team project (Group 30).</p>
+<h4>Problem</h4><p>A mobile carrier losing about 2% of subscribers a month needed to know who will leave and what offer would keep them.</p>
+<h4>Impact</h4><p>Handset age and overage charges drive churn most, so the plan targets handset upgrades and overage caps at high-risk customers, valued against a 5-year customer lifetime value of about SGD 1,000.</p>
+<div class="tools"><span>Python</span><span>Random forest</span><span>Partial dependence</span></div>
+<a class="btn wide" href="projects/smobile.html">View details</a></div></article>
+<article class="card" data-cat="research">
+<a class="cover" href="projects/peer.html" aria-label="Peer Comparison Experiment details"><div class="thumb img"><img src="img/peer_accuracy.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/peer.html">Peer Comparison Experiment</a></h3>
+<p class="sub">Graduate research project, team of 3. Randomized online experiment in Qualtrics.</p>
+<h4>Problem</h4><p>Dashboards often show people how peers performed. Does that actually make them more accurate?</p>
+<h4>Impact</h4><p>Treatment was 4.1 points more accurate (86.8% vs 82.7%), not significant at this size (p = 0.35). Only 44% of the treatment group noticed the peer information, so we specified a stronger design and a 200+ person study.</p>
+<div class="tools"><span>Qualtrics</span><span>Python</span><span>t-tests</span><span>Excel</span></div>
+<a class="btn wide" href="projects/peer.html">View details</a></div></article>
+<article class="card" data-cat="bi">
+<a class="cover" href="projects/spark.html" aria-label="Big Data on AWS: Spark and SageMaker details"><div class="thumb img"><img src="img/spark_runtime.svg" alt=""></div></a>
+<div class="cbody"><div class="row"><span class="pill">BI and data engineering</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/spark.html">Big Data on AWS: Spark and SageMaker</a></h3>
+<p class="sub">Big Data Analytics coursework.</p>
+<h4>Problem</h4><p>4 million reviews are too many for one laptop, and a model is only useful once something can call it.</p>
+<h4>Impact</h4><p>Moving from 1 to 3 worker nodes cut average runtime on 4,027,011 reviews by 59% (140s to 57s).</p>
+<div class="tools"><span>PySpark</span><span>AWS EMR</span><span>S3</span><span>SageMaker</span><span>XGBoost</span></div>
+<a class="btn wide" href="projects/spark.html">View details</a></div></article>
+<article class="card" data-cat="bi">
+<a class="cover" href="projects/snowflake.html" aria-label="Procure-to-Pay ETL Pipeline in Snowflake details"><div class="thumb flow"><span>Stage</span><span>Load</span><span>Model</span><span>Enrich</span><span>Serve</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">BI and data engineering</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/snowflake.html">Procure-to-Pay ETL Pipeline in Snowflake</a></h3>
+<p class="sub">SQL and data warehousing coursework, team of 3.</p>
+<h4>Problem</h4><p>Purchase orders, invoices and supplier files arrive as raw files. Finance teams need clean tables they can query safely.</p>
+<h4>Impact</h4><p>An end-to-end, repeatable pipeline from raw files to a governed analytics view.</p>
+<div class="tools"><span>Snowflake</span><span>SQL</span><span>Python</span></div>
+<a class="btn wide" href="projects/snowflake.html">View details</a></div></article>
+<article class="card" data-cat="research">
+<a class="cover" href="projects/health.html" aria-label="Healthcare Treatment Cost-Effectiveness details"><div class="thumb stat"><b>$36,900</b><span>per QALY for combined hypertension treatment</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/health.html">Healthcare Treatment Cost-Effectiveness</a></h3>
+<p class="sub">Healthcare Analytics coursework.</p>
+<h4>Problem</h4><p>Health systems have to decide which treatments are worth their cost.</p>
+<h4>Impact</h4><p>Combined hypertension treatment: $36,900 per QALY. HIV PrEP: $1,216 per life year. Appendectomy: $11,881 per life year.</p>
+<div class="tools"><span>TreeAge Pro</span><span>Excel</span></div>
+<a class="btn wide" href="projects/health.html">View details</a></div></article>
+<article class="card" data-cat="forecast">
+<a class="cover" href="projects/nyc.html" aria-label="NYC Property Assessment Anomaly Detection details"><div class="thumb stat"><b>1.04M</b><span>properties scored for unusual assessments</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">Forecasting and risk</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/nyc.html">NYC Property Assessment Anomaly Detection</a></h3>
+<p class="sub">Fraud Analytics. Individual project.</p>
+<h4>Problem</h4><p>Find mis-assessed properties in New York City&#x27;s valuation data with no fraud labels to learn from.</p>
+<h4>Impact</h4><p>A ranked list of 1,044,492 properties, with z-score breakdowns that explain why each top property was flagged.</p>
+<div class="tools"><span>Python</span><span>PCA</span><span>Autoencoder</span></div>
+<a class="btn wide" href="projects/nyc.html">View details</a></div></article>
+<article class="card" data-cat="research">
+<a class="cover" href="projects/exportmap.html" aria-label="ExportMap: Export Market Finder details"><div class="thumb stat"><b>7</b><span>public datasets merged into one country view</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/exportmap.html">ExportMap: Export Market Finder</a></h3>
+<p class="sub">Team project, team of 4.</p>
+<h4>Problem</h4><p>Small exporters pick foreign markets by gut feel because trade, tariff and demographic data are scattered.</p>
+<h4>Impact</h4><p>A ranked shortlist of markets for a test product (children&#x27;s clothing). The GDP model improved from R² 0.775 to 0.796.</p>
+<div class="tools"><span>Python</span><span>Regression</span><span>Data integration</span></div>
+<a class="btn wide" href="projects/exportmap.html">View details</a></div></article>
+<article class="card" data-cat="ai">
+<a class="cover" href="projects/recsys.html" aria-label="Book Recommender System details"><div class="thumb stat"><b>3</b><span>models: would-read, rating and genre</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">AI and NLP</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/recsys.html">Book Recommender System</a></h3>
+<p class="sub">Web Mining and Recommender Systems coursework.</p>
+<h4>Problem</h4><p>Predict whether a reader will pick up a book, how they will rate it and what genre a review describes.</p>
+<h4>Impact</h4><p>Three working prediction models; on a related task, added features cut a classifier&#x27;s error from 16.1% to 14.3%.</p>
+<div class="tools"><span>Python</span><span>scikit-learn</span><span>NLP</span></div>
+<a class="btn wide" href="projects/recsys.html">View details</a></div></article>
+<article class="card" data-cat="ai">
+<a class="cover" href="projects/rag.html" aria-label="Product Assistant with RAG details"><div class="thumb stat"><b>88%</b><span>answer accuracy on a 40-question test set</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">AI and NLP</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/rag.html">Product Assistant with RAG</a></h3>
+<p class="sub">MSBA elective, team project.</p>
+<h4>Problem</h4><p>A chatbot that sounds right isn&#x27;t the same as one that is right.</p>
+<h4>Impact</h4><p>88% answer accuracy on 40 test questions.</p>
+<div class="tools"><span>LlamaIndex</span><span>Claude</span><span>Python</span></div>
+<a class="btn wide" href="projects/rag.html">View details</a></div></article>
+<article class="card" data-cat="ai">
+<a class="cover" href="projects/agent.html" aria-label="Live Assignment-Checking AI Agent details"><div class="thumb stat"><b>89%</b><span>accuracy checking assignments</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">AI and NLP</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/agent.html">Live Assignment-Checking AI Agent</a></h3>
+<p class="sub">Workshop project, solo.</p>
+<h4>Problem</h4><p>Checking assignments by hand is slow and inconsistent.</p>
+<h4>Impact</h4><p>89% accuracy on assignment checks.</p>
+<div class="tools"><span>Claude</span><span>LangChain</span><span>Python</span></div>
+<a class="btn wide" href="projects/agent.html">View details</a></div></article>
+<article class="card" data-cat="research">
+<a class="cover" href="projects/survey.html" aria-label="Sydney Rental Housing Survey details"><div class="thumb stat"><b>Survey</b><span>design for a study on rising rents</span></div></a>
+<div class="cbody"><div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
+<h3><a href="projects/survey.html">Sydney Rental Housing Survey</a></h3>
+<p class="sub">Sociology research project, University of Sydney.</p>
+<h4>Problem</h4><p>Rents in Sydney were rising fast, and the research needed first-hand data from renters.</p>
+<h4>Impact</h4><p>Where my habit of asking careful questions of data started.</p>
+<div class="tools"><span>Survey design</span></div>
+<a class="btn wide" href="projects/survey.html">View details</a></div></article></div></section>
+
+<section class="wrap block" id="skills"><h2>Skills</h2><div class="sks"><div class="sk"><h3>Data and code</h3><p>SQL, Python (pandas, Polars), R, Excel, Power Query, Snowflake, PySpark, AWS (EMR, S3, SageMaker)</p></div><div class="sk"><h3>Dashboards and research</h3><p>Tableau (LOD expressions), Power BI, Google Analytics, Salesforce, HubSpot, Qualtrics, A/B test design</p></div><div class="sk"><h3>Modeling and AI</h3><p>Forecasting (XGBoost, SARIMA), fraud and churn models (LightGBM, random forest), customer targeting, recommender systems, RAG, agents with LangChain and Claude, TreeAge</p></div></div></section>
+
+<section class="wrap block contact" id="contact"><h2>Hiring for an analyst role starting in 2027? Let's talk.</h2>
+<ul><li>Email: <a href="mailto:simarbawa2001@gmail.com">simarbawa2001@gmail.com</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/simar-bawa-8979701a9">linkedin.com/in/simar-bawa-8979701a9</a></li>
+<li>Phone: <a href="tel:+18588287924">(858) 828-7924</a></li></ul>
+<a class="btn" href="Simar_Bawa_Resumee.pdf">Download resume (PDF)</a></section>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer>
+<script>(function(){var c=document.querySelectorAll('.chip'),k=document.querySelectorAll('.card');
+c.forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;c.forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});
+k.forEach(function(n){n.hidden=!(f==='all'||n.dataset.cat===f)})})})})();</script></body></html>
