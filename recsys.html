@@ -3,7 +3,7 @@
 <title>Book Recommender System | Simar Bawa</title><meta name="description" content="Predict whether a reader will pick up a book, how they will rate it and what genre a review describes.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -15,9 +15,15 @@
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>Predict whether a reader will pick up a book, how they will rate it and what genre a review describes.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Matrix factorization with user and book biases, TF-IDF text features with a linear SVM, and item-to-item similarity.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>Three working prediction models; on a related task, added features cut a classifier&#x27;s error from 16.1% to 14.3%.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>3</b><span>models: would-read, rating and genre</span></div></div>
+<section><h2><span class="ic">03</span>Impact</h2><p>Three working prediction models. In a related classifier, review scores and length cut the error rate from 16.1% to 14.3%, and removing beer style more than doubled it to 31.4%, showing style carries most of the signal.</p></section></div>
 
-<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>scikit-learn</span><span>NLP</span></div>
-<nav class="pn"><a href="exportmap.html">&larr; ExportMap: Export Market Finder</a><a href="rag.html">Product Assistant with RAG &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+
+<h2 class="h2">Results</h2><figure class="fig"><img src="webmining_ber.svg" alt="Ablation test from my homework output: what each feature group adds."><figcaption>Ablation test from my homework output: what each feature group adds.</figcaption></figure>
+<h2 class="h2">What I did</h2><ul class="det"><li>Matrix factorization with user and book bias terms for rating prediction.</li><li>TF-IDF word and character n-grams with a calibrated linear SVM for genre.</li><li>Item-to-item recommender using Jaccard similarity on Amazon musical instrument reviews.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Matrix factorization with biases, one training step (excerpt)</figcaption><pre><code>err = r - (mu + bu[u] + bi[i] + P[u] @ Q[i])
+bu[u] += lr * (err - reg_bias * bu[u])
+bi[i] += lr * (err - reg_bias * bi[i])
+P[u], Q[i] = P[u] + lr * (err * Q[i] - reg * P[u]), Q[i] + lr * (err * P[u] - reg * Q[i])</code></pre></figure>
+<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>scikit-learn</span><span>Matrix factorization</span><span>NLP</span></div>
+<nav class="pn"><a href="health.html">&larr; Healthcare Treatment Cost-Effectiveness</a><a href="survey.html">Sydney Rental Housing Survey (Rebuilt) &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

@@ -3,21 +3,36 @@
 <title>Inventory Optimization for Crafter.com | Simar Bawa</title><meta name="description" content="Crafter&#x27;s system logged out-of-stock months as zero sales. Every forecast built on that history learned to expect too little, so the best sellers kept running out.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
 <a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
 <a class="back" href="index.html#projects">&larr; Back to projects</a>
-<h1>Inventory Optimization for Crafter.com</h1><p class="lead">MSBA capstone for an online craft retailer. I led a team of 4.</p>
+<h1>Inventory Optimization for Crafter.com</h1><p class="lead">MSBA capstone for Crafter.com, an online craft-kit company. I was team lead for a team of 4.</p>
 <div class="row"><span class="pill">Forecasting and risk</span><span class="pill st client">Client project</span><span class="pill">2026</span></div>
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>Crafter&#x27;s system logged out-of-stock months as zero sales. Every forecast built on that history learned to expect too little, so the best sellers kept running out.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>Integrated 6 data sources (176 products, 564K+ order lines), reconstructed 360 stockout months, then compared XGBoost, SARIMA, Ridge and a naive baseline on held-out months.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>Recovered about 6% of hidden demand for A-class products. XGBoost won (out-of-sample R² 0.48, MAPE about 12%), feeding a budget-constrained buy list with a projected 3.8x return.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>3.8x</b><span>projected return on a $15K inventory budget</span></div></div>
-<h2 class="h2">What I did</h2><ul class="det"><li>Built the demand reconstruction so stockout months were filled with estimated demand instead of zeros.</li><li>Ran the model comparison on months the models never saw, so the winner was chosen on honest accuracy.</li><li>Turned the forecast into a buy list under a $15K budget, plus an interactive dashboard and an Excel planning toolkit the client&#x27;s team can run without us.</li></ul>
-<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>SQL</span><span>XGBoost</span><span>SARIMA</span><span>Tableau</span><span>Excel</span></div>
-<nav class="pn"><a href="survey.html">&larr; Sydney Rental Housing Survey</a><a href="h1b.html">H-1B Sponsorship Insights Dashboards &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<section><h2><span class="ic">02</span>Approach</h2><p>Analyzed 564,780 order line items, found months where a product recorded zero sales because it was out of stock, and reconstructed 360 of them. Then compared Ridge, SARIMA, XGBoost and Random Forest with walk-forward validation, and ranked every product by revenue return per purchasing dollar.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Random Forest won (out-of-sample R² 0.45, MAPE about 12%) and about 6% of hidden A-class demand was recovered. At a $15K budget the buy list funds 49 orders ($14.8K) expected to bring in $56.3K, a 3.8x return. Crafter now runs the whole cycle monthly in under 2 hours.</p></section></div>
+<h2 class="h2">Try the dashboard I built for the client</h2><div class="note">This is the real tool with product names replaced and dollar figures scaled to protect Crafter. Drag the budget slider on the Buy List tab, switch forecast scenarios, or use the reorder calculator. <a href="crafter_dashboard.html" target="_blank" rel="noopener">Open full screen &rarr;</a></div><div class="embed"><iframe src="crafter_dashboard.html" title="Crafter inventory dashboard demo" loading="lazy"></iframe></div>
+
+<h2 class="h2">Results</h2><figure class="fig"><img src="crafter_pareto.svg" alt="Cumulative share of 12-month revenue by product. Computed from the client data; no product names or dollar amounts shown."><figcaption>Cumulative share of 12-month revenue by product. Computed from the client data; no product names or dollar amounts shown.</figcaption></figure><figure class="fig"><img src="crafter_abc.svg" alt="ABC tier and recommendation for all 176 products."><figcaption>ABC tier and recommendation for all 176 products.</figcaption></figure><figure class="fig"><img src="crafter_channels.svg" alt="Monthly units by channel with the 6-month base-case forecast (dashed)."><figcaption>Monthly units by channel with the 6-month base-case forecast (dashed).</figcaption></figure>
+<h2 class="h2">What I did</h2><ul class="det"><li>Found that 62 of 176 products drive 95% of revenue, so the buy list focuses there; 107 slow sellers (under 3 units a year) were flagged to sunset and free up cash.</li><li>Forecast 12-month demand by channel under three scenarios: conservative 4,647, base 5,466 and growth 6,285 units.</li><li>Handed over 6 tools: the interactive dashboard, an Excel toolkit (buy list, reorder points and safety stock, vendor scorecard, KPIs, new-product entry), a purchasing SOP and two how-to guides.</li><li>Recommended the data fixes that would lift accuracy next: weekly on-hand stock (only 13% tracked today), back-in-stock requests and clean wholesale tags.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Reorder point, order quantity and the budget-constrained buy list (simplified)</figcaption><pre><code>def reorder_plan(demand, demand_sd, lead_months, z=1.65, moq=25):
+    safety = math.ceil(z * demand_sd * math.sqrt(lead_months))
+    reorder_point = math.ceil(demand * lead_months + safety)
+    order_qty = max(moq, math.ceil(demand * (lead_months + 1) + safety))
+    return safety, reorder_point, order_qty
+
+reorder_plan(17, 8, 2)   # (19, 53, 70), the worked example in the client guide
+
+buy = skus.assign(cost=lambda d: d.order_qty * d.cogs,
+                  revenue=lambda d: d.order_qty * d.retail)
+buy[&quot;return_per_dollar&quot;] = buy.revenue / buy.cost
+buy = buy.sort_values(&quot;return_per_dollar&quot;, ascending=False)
+buy[&quot;decision&quot;] = np.where(buy.cost.cumsum() &lt;= budget, &quot;FUND&quot;, &quot;DEFER&quot;)</code></pre></figure>
+<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>SQL</span><span>Random Forest</span><span>XGBoost</span><span>Excel</span><span>Chart.js</span></div>
+<nav class="pn"><a href="survey.html">&larr; Sydney Rental Housing Survey (Rebuilt)</a><a href="h1b.html">H-1B Sponsorship Insights Dashboards &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

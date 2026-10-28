@@ -1,23 +1,64 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Product Assistant with RAG | Simar Bawa</title><meta name="description" content="A chatbot that sounds right isn&#x27;t the same as one that is right.">
+<title>Help Desk Assistant with RAG (Live Demo) | Simar Bawa</title><meta name="description" content="A support bot that sounds confident but cites nothing is a liability. It should answer from the help center, show its source, use tools for live data, and decline when it doesn&#x27;t know.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
 <a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
 <a class="back" href="index.html#projects">&larr; Back to projects</a>
-<h1>Product Assistant with RAG</h1><p class="lead">MSBA elective, team project.</p>
+<h1>Help Desk Assistant with RAG (Live Demo)</h1><p class="lead">My original version was an MSBA elective team project (Claude + LlamaIndex, 88% on a 40-question test). Those files were lost, so I rebuilt it on synthetic data as a demo that runs in your browser.</p>
 <div class="row"><span class="pill">AI and NLP</span><span class="pill st">Completed</span></div>
 <div class="pai">
-<section><h2><span class="ic">01</span>Problem</h2><p>A chatbot that sounds right isn&#x27;t the same as one that is right.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>Retrieval-augmented assistant over product data with tool calling, scored against a ground-truth test set.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>88% answer accuracy on 40 test questions.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>88%</b><span>answer accuracy on a 40-question test set</span></div></div>
+<section><h2><span class="ic">01</span>Problem</h2><p>A support bot that sounds confident but cites nothing is a liability. It should answer from the help center, show its source, use tools for live data, and decline when it doesn&#x27;t know.</p></section>
+<section><h2><span class="ic">02</span>Approach</h2><p>Built a 23-article help center and 5 sample orders for a fictional craft store. Questions are routed to a tool (order lookup, shipping quote) or to BM25 retrieval, which picks the best passage and the most relevant sentences and cites the source. Low-scoring questions are declined.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Tuned on a 40-question set (36 correct), then scored on 30 new questions: 24 correct with the right source (80%). Its weak spot is clear: it answered all 3 out-of-scope questions instead of declining, so a stricter refusal rule is the next fix.</p></section></div>
+<h2 class="h2">Try it</h2><div class="demo">
+<h3>Ask the Maple &amp; Thread help desk</h3>
+<p class="hint">A fictional craft-kit store with 23 synthetic help articles, 5 sample orders and 2 tools. Try a sample question or type your own.</p>
+<div class="row2" id="ragSamples"></div>
+<div class="row2"><input type="text" id="ragQ" placeholder="e.g. Do gift cards expire?" aria-label="Your question"><button id="ragGo" type="button">Ask</button></div>
+<div class="out" id="ragOut"><div class="ans" id="ragAns"></div><div class="src" id="ragSrc"></div><ul class="trace" id="ragTrace"></ul></div>
+</div>
+<script src="rag_engine.js"></script>
+<script>
+(function(){
+  var S=["How long should candles cure before I light them?","Do you ship to Australia?","Where is my order MT-1002?","What would shipping cost on a $60 order?","Can I return an opened kit?","Do you sell sewing machines?"];
+  var box=document.getElementById('ragSamples');
+  S.forEach(function(q){var b=document.createElement('button');b.type='button';b.className='chipq';b.textContent=q;b.onclick=function(){document.getElementById('ragQ').value=q;ask();};box.appendChild(b);});
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function ask(){
+    var q=document.getElementById('ragQ').value.trim(); if(!q) return;
+    var r=MapleRAG.answer(q);
+    document.getElementById('ragAns').textContent=r.answer;
+    var src=r.sources.map(function(id){var d=MapleRAG.DOCS.find(function(x){return x.id===id});return '<b>'+esc(d.title)+'</b>';}).join(', ');
+    document.getElementById('ragSrc').innerHTML=r.tool?('Answered with the <b>'+r.tool+'</b> tool'+(src?' (rules from '+src+')':'')):(src?'Source: '+src:'No source found, so it declined.');
+    document.getElementById('ragTrace').innerHTML=r.trace.map(function(t){return '<li>'+esc(t)+'</li>';}).join('');
+    document.getElementById('ragOut').classList.add('on');
+  }
+  document.getElementById('ragGo').onclick=ask;
+  document.getElementById('ragQ').addEventListener('keydown',function(e){if(e.key==='Enter')ask();});
+})();
+</script>
 
-<h2 class="h2">Tools</h2><div class="tools big"><span>LlamaIndex</span><span>Claude</span><span>Python</span></div>
-<nav class="pn"><a href="recsys.html">&larr; Book Recommender System</a><a href="agent.html">Live Assignment-Checking AI Agent &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<h2 class="h2">Results</h2><div class="metrics"><div><b>80%</b><span>held-out questions answered correctly (24 of 30)</span></div><div><b>90%</b><span>development questions (36 of 40)</span></div><div><b>0 of 3</b><span>out-of-scope questions correctly declined</span></div></div>
+
+<h2 class="h2">What I did</h2><ul class="det"><li>Every answer shows the retrieval trace (which articles scored highest) so you can see why it answered.</li><li>In this browser version answers are extracted sentences, not generated text, so it needs no API key. The original course version used Claude to write the final answer.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>BM25 retrieval at the core of the assistant (excerpt)</figcaption><pre><code>function search(q, k = 3) {
+  const qt = tok(q), k1 = 1.4, b = 0.75;
+  return passages.map(p =&gt; {
+    let s = 0;
+    qt.forEach(t =&gt; {
+      const f = p.toks.filter(x =&gt; x === t).length; if (!f) return;
+      const idf = Math.log(1 + (N - df[t] + .5) / (df[t] + .5));
+      s += idf * (f * (k1 + 1)) / (f + k1 * (1 - b + b * p.toks.length / avgdl));
+    });
+    return { doc: p, score: s };
+  }).sort((x, y) =&gt; y.score - x.score).slice(0, k);
+}</code></pre></figure>
+<h2 class="h2">Tools</h2><div class="tools big"><span>JavaScript</span><span>BM25 retrieval</span><span>Tool calling</span><span>Evaluation</span></div>
+<nav class="pn"><a href="agent.html">&larr; SQL Assignment-Checking Agent (Live Demo)</a><a href="cardfraud.html">Card Transaction Fraud Detection &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

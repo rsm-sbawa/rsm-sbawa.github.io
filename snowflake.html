@@ -3,7 +3,7 @@
 <title>Procure-to-Pay ETL Pipeline in Snowflake | Simar Bawa</title><meta name="description" content="Purchase orders, invoices and supplier files arrive as raw files. Finance teams need clean tables they can query safely.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -14,10 +14,21 @@
 <div class="row"><span class="pill">BI and data engineering</span><span class="pill st">Completed</span></div>
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>Purchase orders, invoices and supplier files arrive as raw files. Finance teams need clean tables they can query safely.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>Staged files, loaded them with PUT and COPY INTO, modeled procure-to-pay tables, joined external weather data and served results through a materialized view with role-based access.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>An end-to-end, repeatable pipeline from raw files to a governed analytics view.</p></section></div>
+<section><h2><span class="ic">02</span>Approach</h2><p>Staged raw files, loaded them with PUT and COPY INTO, cleaned types with TRY_TO_NUMBER and TRY_TO_DATE, matched supplier invoices to purchase order totals, and served the result through a materialized view. Then joined supplier ZIP codes to daily weather data.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Finance can see, invoice by invoice, how far the amount billed differs from what the purchase order quoted, with weather on the transaction date alongside for analysis.</p></section></div>
+
+
 <h2 class="h2">Results</h2><div class="fig solo"><div class="thumb flow"><span>Stage</span><span>Load</span><span>Model</span><span>Enrich</span><span>Serve</span></div></div>
-<h2 class="h2">What I did</h2><ul class="det"><li>Roles control which user groups can see which tables.</li></ul>
+<h2 class="h2">What I did</h2><ul class="det"><li>Typed the raw CSV columns safely so bad values became nulls instead of failing the load.</li><li>Computed each purchase order&#x27;s quoted amount (units received x expected unit price) and matched invoices on both order ID and supplier ID.</li><li>Extracted clean 5-digit ZIP codes from messy address fields with regular expressions before the weather join.</li><li>Granted warehouse and database access through roles instead of individual users.</li><li>One later query in our submission flipped the sign of invoiced vs quoted. The definition used here (invoiced minus quoted) is the one in the materialized view.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Materialized view: invoiced vs quoted, per invoice (excerpt)</figcaption><pre><code>CREATE OR REPLACE MATERIALIZED VIEW PURCHASE_ORDERS_AND_INVOICES AS
+SELECT i.SupplierTransactionID, i.PurchaseOrderID, i.SupplierID, i.TransactionDate,
+       i.AmountExcludingTax, p.POAmount,
+       COALESCE(i.AmountExcludingTax, 0) - COALESCE(p.POAmount, 0) AS invoiced_vs_quoted
+FROM SUPPLIER_INVOICES i
+JOIN (SELECT PurchaseOrderID, SupplierID,
+             SUM(COALESCE(ReceivedOuters, 0) * COALESCE(ExpectedUnitPricePerOuter, 0)) AS POAmount
+      FROM PURCHASES GROUP BY 1, 2) p
+  ON i.PurchaseOrderID = p.PurchaseOrderID AND i.SupplierID = p.SupplierID;</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Snowflake</span><span>SQL</span><span>Python</span></div>
-<nav class="pn"><a href="spark.html">&larr; Big Data on AWS: Spark and SageMaker</a><a href="health.html">Healthcare Treatment Cost-Effectiveness &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="spark.html">&larr; Big Data on AWS: Spark and SageMaker</a><a href="nyc.html">NYC Property Assessment Anomaly Detection &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

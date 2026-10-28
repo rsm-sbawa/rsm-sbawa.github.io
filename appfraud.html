@@ -3,7 +3,7 @@
 <title>Application Fraud Detection | Simar Bawa</title><meta name="description" content="A review team can only check a small share of applications. The model has to rank 1 million applications so the riskiest 3% hold as much fraud as possible.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -16,8 +16,19 @@
 <section><h2><span class="ic">01</span>Problem</h2><p>A review team can only check a small share of applications. The model has to rank 1 million applications so the riskiest 3% hold as much fraud as possible.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Found and neutralized placeholder values (one birth date appeared 126,568 times), built 1,841 identity-linking and velocity variables, cut them to 20, and compared 5 model families on later months the models never saw.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>LightGBM catches 58.9% of fraud in the top 3%, about 20 times random review. A 1.5% review cutoff saves an estimated $5.3M net on the 2-month holdout.</p></section></div>
-<h2 class="h2">Results</h2><figure class="fig"><img src="appfraud_models.svg" alt="Train, test and out-of-time results for each model family. The gold bar is the chosen model."><figcaption>Train, test and out-of-time results for each model family. The gold bar is the chosen model.</figcaption></figure>
+
+
+<h2 class="h2">Results</h2><figure class="fig"><img src="appfraud_models.svg" alt="Train, test and out-of-time results for each model family. The gold bar is the chosen model."><figcaption>Train, test and out-of-time results for each model family. The gold bar is the chosen model.</figcaption></figure><figure class="fig light"><img src="appfraud_dob_placeholder.jpg" alt="From my data quality report: one placeholder birth date (1907-06-26) appeared 126,568 times. Left untreated, it would link unrelated applicants and fake fraud signals."><figcaption>From my data quality report: one placeholder birth date (1907-06-26) appeared 126,568 times. Left untreated, it would link unrelated applicants and fake fraud signals.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Data: 1,000,000 applications with 14,393 fraud cases (1.44%).</li><li>Feature selection: KS filter, then forward wrapper selection scored on fraud caught in the top 3%.</li><li>Picked LightGBM for the best out-of-time result and the smallest drop from test to later months.</li><li>Cost curves assumed $4,000 lost per missed fraud and $100 per false alarm.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>How each model was scored: fraud caught in the riskiest 3% (excerpt, simplified)</figcaption><pre><code>def fdr_at(y_true, scores, pct=0.03):
+    &quot;&quot;&quot;Share of all fraud caught in the riskiest pct of records.&quot;&quot;&quot;
+    df = pd.DataFrame({&quot;y&quot;: y_true, &quot;s&quot;: scores}).sort_values(&quot;s&quot;, ascending=False)
+    top = df.head(int(len(df) * pct))
+    return top[&quot;y&quot;].sum() / df[&quot;y&quot;].sum()
+
+model = lgb.LGBMClassifier(n_estimators=100, num_leaves=5)
+model.fit(X_train[final_20], y_train)
+fdr_at(y_oot, model.predict_proba(X_oot[final_20])[:, 1])   # 0.589 on Nov-Dec data</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>LightGBM</span><span>scikit-learn</span><span>Feature engineering</span></div>
-<nav class="pn"><a href="h1b.html">&larr; H-1B Sponsorship Insights Dashboards</a><a href="tuango.html">Tuango: Who Should Get the Deal? &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="h1b.html">&larr; H-1B Sponsorship Insights Dashboards</a><a href="fitech.html">FiTech: Testing Credit Card Offers &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

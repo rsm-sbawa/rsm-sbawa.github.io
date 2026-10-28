@@ -3,7 +3,7 @@
 <title>ExportMap: Export Market Finder | Simar Bawa</title><meta name="description" content="Small exporters pick foreign markets by gut feel because trade, tariff and demographic data are scattered.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -14,10 +14,13 @@
 <div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>Small exporters pick foreign markets by gut feel because trade, tariff and demographic data are scattered.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>Merged 7 datasets, standardized country codes, built a 0 to 1 Market Opportunity Score and modeled GDP per capita.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>A ranked shortlist of markets for a test product (children&#x27;s clothing). The GDP model improved from R² 0.775 to 0.796.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>7</b><span>public datasets merged into one country view</span></div></div>
+<section><h2><span class="ic">02</span>Approach</h2><p>Merged 7 public datasets, standardized country names and ISO codes, aligned years and scaled features. Built a 0 to 1 Market Opportunity Score, a GDP per capita regression and a logistic classifier for high vs low opportunity markets.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>A ranked market shortlist led by Luxembourg (0.721) and the United States (0.671). The GDP model reached R² 0.796 (up from 0.775) and the classifier was right on 37 of 40 test countries (92.5%, AUC 0.982).</p></section></div>
 
-<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>Regression</span><span>Data integration</span></div>
-<nav class="pn"><a href="nyc.html">&larr; NYC Property Assessment Anomaly Detection</a><a href="recsys.html">Book Recommender System &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+
+<h2 class="h2">Results</h2><figure class="fig"><img src="exportmap_mos.svg" alt="Top 6 markets from our model output."><figcaption>Top 6 markets from our model output.</figcaption></figure><figure class="fig"><img src="exportmap_models.svg" alt="Left: GDP model coefficients. Right: classifier results on 40 held-out countries."><figcaption>Left: GDP model coefficients. Right: classifier results on 40 held-out countries.</figcaption></figure><figure class="fig light"><img src="exportmap_gdp_fit.jpg" alt="From our deck: predicted vs actual GDP per capita for the final model."><figcaption>From our deck: predicted vs actual GDP per capita for the final model.</figcaption></figure>
+<h2 class="h2">What I did</h2><ul class="det"><li>Wealthy microstates top the list, which shows the score leans heavily on GDP per capita. For a real exporter I&#x27;d add market size so tiny markets don&#x27;t dominate.</li><li>Because the high-potential label comes from the same score, the classifier&#x27;s accuracy mostly confirms the score is consistent rather than predicting something new.</li><li>In the final GDP model, literacy has a negative coefficient once phones per 1,000 is included; the two move together, so individual coefficients shouldn&#x27;t be read as causes.</li></ul>
+
+<h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Regression</span><span>Data integration</span></div>
+<nav class="pn"><a href="peer.html">&larr; Peer Comparison Experiment</a><a href="spark.html">Big Data on AWS: Spark and SageMaker &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

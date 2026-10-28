@@ -1,23 +1,77 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live Assignment-Checking AI Agent | Simar Bawa</title><meta name="description" content="Checking assignments by hand is slow and inconsistent.">
+<title>SQL Assignment-Checking Agent (Live Demo) | Simar Bawa</title><meta name="description" content="Checking SQL homework by reading it is slow and inconsistent. A query can look right and return the wrong rows, or look different and be perfectly correct.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
 <a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
 <a class="back" href="index.html#projects">&larr; Back to projects</a>
-<h1>Live Assignment-Checking AI Agent</h1><p class="lead">Workshop project, solo.</p>
+<h1>SQL Assignment-Checking Agent (Live Demo)</h1><p class="lead">My original was a solo workshop project with Claude and LangChain (89% accuracy). Those files were lost, so I rebuilt the idea as a working agent on a synthetic database.</p>
 <div class="row"><span class="pill">AI and NLP</span><span class="pill st">Completed</span></div>
 <div class="pai">
-<section><h2><span class="ic">01</span>Problem</h2><p>Checking assignments by hand is slow and inconsistent.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>A live agent built with Claude and LangChain that reviews submissions and returns feedback.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>89% accuracy on assignment checks.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>89%</b><span>accuracy checking assignments</span></div></div>
+<section><h2><span class="ic">01</span>Problem</h2><p>Checking SQL homework by reading it is slow and inconsistent. A query can look right and return the wrong rows, or look different and be perfectly correct.</p></section>
+<section><h2><span class="ic">02</span>Approach</h2><p>The agent follows a plan and uses tools: a safety check, a real SQLite engine running in the browser, a reference solution, a result comparer that allows reordered columns, and diagnosis rules that write targeted feedback and partial credit.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Graded all 50 test submissions as intended (20 correct, written several different ways, and 30 with common bugs). I wrote those submissions myself, so this shows the logic works; real student work would be the true test.</p></section></div>
+<h2 class="h2">Try it</h2><div class="demo">
+<h3>Submit a SQL answer and watch the agent grade it</h3>
+<p class="hint">Synthetic store database: customers (20), orders (36), order_items (68). Pick a question, edit the query and press Grade. Nothing leaves your browser.</p>
+<select id="agQ" aria-label="Question"></select>
+<p class="hint" id="agPrompt" style="margin-top:10px"></p>
+<textarea id="agSQL" aria-label="Your SQL" spellcheck="false"></textarea>
+<div class="row2"><button id="agGo" type="button">Grade</button><button id="agBug" class="sec" type="button">Load a buggy answer</button><button id="agGood" class="sec" type="button">Load a correct answer</button></div>
+<div class="out" id="agOut"><span class="verdict" id="agV"></span><div class="ans" id="agFb"></div><ul class="trace" id="agSteps"></ul><div id="agTbl"></div></div>
+<p class="hint" id="agLoad" style="margin-top:10px">Loading the SQLite engine...</p>
+</div>
+<script src="sql-wasm.js"></script>
+<script src="grader_engine.js"></script>
+<script>
+(function(){
+  var BUG={Q1:"SELECT c.city, SUM(o.total) AS revenue\nFROM customers c JOIN orders o ON c.id = o.customer_id\nGROUP BY c.city\nORDER BY revenue",
+    Q2:"SELECT DISTINCT c.name\nFROM customers c JOIN orders o ON o.customer_id = c.id",
+    Q3:"SELECT c.name, COUNT(*) AS n_orders\nFROM customers c LEFT JOIN orders o ON o.customer_id = c.id\nGROUP BY c.id",
+    Q4:"SELECT product, COUNT(*) AS units\nFROM order_items\nGROUP BY product\nORDER BY units DESC\nLIMIT 3",
+    Q5:"SELECT strftime('%m', order_date) AS month, AVG(total)\nFROM orders\nGROUP BY month"};
+  var GOOD={Q1:"SELECT c.city, SUM(o.total) AS revenue\nFROM customers c JOIN orders o ON c.id = o.customer_id\nGROUP BY c.city\nORDER BY revenue DESC",
+    Q2:"SELECT c.name\nFROM customers c LEFT JOIN orders o ON o.customer_id = c.id\nWHERE o.id IS NULL",
+    Q3:"SELECT c.name, COUNT(o.id) AS n_orders\nFROM customers c LEFT JOIN orders o ON o.customer_id = c.id\nGROUP BY c.id",
+    Q4:"SELECT product, SUM(qty) AS units\nFROM order_items\nGROUP BY product\nORDER BY units DESC\nLIMIT 3",
+    Q5:"SELECT (CAST(strftime('%m', order_date) AS INTEGER) + 2) / 3 AS quarter,\n       ROUND(AVG(total), 2) AS avg_order\nFROM orders\nGROUP BY quarter\nORDER BY quarter"};
+  var sel=document.getElementById('agQ'),db=null;
+  SQLGrader.QUESTIONS.forEach(function(q){var o=document.createElement('option');o.value=q.id;o.textContent=q.id+': '+q.title;sel.appendChild(o);});
+  function setQ(){var q=SQLGrader.QUESTIONS.find(function(x){return x.id===sel.value});document.getElementById('agPrompt').textContent=q.prompt;document.getElementById('agSQL').value=BUG[q.id];document.getElementById('agOut').classList.remove('on');}
+  sel.onchange=setQ;setQ();
+  document.getElementById('agBug').onclick=function(){document.getElementById('agSQL').value=BUG[sel.value];};
+  document.getElementById('agGood').onclick=function(){document.getElementById('agSQL').value=GOOD[sel.value];};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  initSqlJs({locateFile:function(f){return f;}}).then(function(SQL){db=new SQL.Database();db.run(SQLGrader.buildSQL());document.getElementById('agLoad').textContent='SQLite engine ready.';}).catch(function(e){document.getElementById('agLoad').textContent='Could not load the SQL engine: '+e.message;});
+  document.getElementById('agGo').onclick=function(){
+    if(!db){return;}
+    var r=SQLGrader.grade(db,sel.value,document.getElementById('agSQL').value);
+    var v=document.getElementById('agV');v.textContent=(r.correct?'Correct':'Needs work')+' · '+r.score+'/10';v.className='verdict '+(r.correct?'ok':'no');
+    document.getElementById('agFb').innerHTML=r.feedback.map(esc).join('<br>');
+    document.getElementById('agSteps').innerHTML=r.steps.map(function(s){return '<li>'+esc(s)+'</li>';}).join('');
+    var t='';if(r.preview&&r.preview.columns.length){t='<table class="res"><tr>'+r.preview.columns.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr>'+r.preview.rows.slice(0,8).map(function(row){return '<tr>'+row.map(function(c){return '<td>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</table>'+(r.preview.rows.length>8?'<p class="hint">Showing 8 of '+r.preview.rows.length+' rows.</p>':'');}
+    document.getElementById('agTbl').innerHTML=t;document.getElementById('agOut').classList.add('on');
+  };
+})();
+</script>
 
-<h2 class="h2">Tools</h2><div class="tools big"><span>Claude</span><span>LangChain</span><span>Python</span></div>
-<nav class="pn"><a href="rag.html">&larr; Product Assistant with RAG</a><a href="survey.html">Sydney Rental Housing Survey &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<h2 class="h2">Results</h2><div class="metrics"><div><b>50 / 50</b><span>submissions graded as intended</span></div><div><b>5</b><span>assignment questions with reference answers</span></div><div><b>7</b><span>diagnosis rules for common mistakes</span></div></div>
+
+<h2 class="h2">What I did</h2><ul class="det"><li>Judges the result, not the wording, so a NOT EXISTS answer and a LEFT JOIN answer both pass.</li><li>Feedback explains the bug, for example that COUNT(*) counts the empty joined row as 1, or that an inner join drops customers with no orders.</li><li>Blocks anything that would change the database before running it.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>The agent loop (excerpt)</figcaption><pre><code>function grade(db, qid, sql) {
+  const unsafe = safetyCheck(sql);                 // tool 1: block writes
+  if (unsafe) return fail(0, unsafe);
+  const student = run(db, sql);                    // tool 2: SQLite engine
+  const reference = run(db, question(qid).ref);    // tool 3: reference answer
+  const cmp = compare(reference, student, question(qid).ordered);   // tool 4
+  if (cmp.ok) return pass(10);
+  return fail(partialCredit(cmp), [cmp.detail, ...diagnose(qid, cmp, sql)]);  // tool 5
+}</code></pre></figure>
+<h2 class="h2">Tools</h2><div class="tools big"><span>JavaScript</span><span>SQL</span><span>SQLite (WebAssembly)</span><span>Agent design</span></div>
+<nav class="pn"><a href="tuango.html">&larr; Tuango: Who Should Get the Deal?</a><a href="rag.html">Help Desk Assistant with RAG (Live Demo) &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

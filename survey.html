@@ -1,23 +1,67 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sydney Rental Housing Survey | Simar Bawa</title><meta name="description" content="Rents in Sydney were rising fast, and the research needed first-hand data from renters.">
+<title>Sydney Rental Housing Survey (Rebuilt) | Simar Bawa</title><meta name="description" content="Rents in Sydney were rising fast. The project needed first-hand data on who was under pressure and how they were coping, asked in a way that doesn&#x27;t lead the respondent.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
 <a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
 <a class="back" href="index.html#projects">&larr; Back to projects</a>
-<h1>Sydney Rental Housing Survey</h1><p class="lead">Sociology research project, University of Sydney.</p>
+<h1>Sydney Rental Housing Survey (Rebuilt)</h1><p class="lead">Undergraduate sociology research project, University of Sydney. The original files were lost, so this is the questionnaire rebuilt as a working form.</p>
 <div class="row"><span class="pill">Research and health</span><span class="pill st">Completed</span></div>
 <div class="pai">
-<section><h2><span class="ic">01</span>Problem</h2><p>Rents in Sydney were rising fast, and the research needed first-hand data from renters.</p></section>
-<section><h2><span class="ic">02</span>Approach</h2><p>Designed the survey questions and structure for the project.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>Where my habit of asking careful questions of data started.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>Survey</b><span>design for a study on rising rents</span></div></div>
+<section><h2><span class="ic">01</span>Problem</h2><p>Rents in Sydney were rising fast. The project needed first-hand data on who was under pressure and how they were coping, asked in a way that doesn&#x27;t lead the respondent.</p></section>
+<section><h2><span class="ic">02</span>Approach</h2><p>Neutral wording, ranges and single choices where precision isn&#x27;t needed, an optional income question to reduce drop-off, a 5-point agreement scale for stress and a select-all list of coping actions.</p></section>
+<section><h2><span class="ic">03</span>Impact</h2><p>Each answer becomes a clean, analysis-ready record, including a rent-to-income ratio and the common 30% rental-stress flag. No results are shown here because the original responses were lost.</p></section></div>
+<h2 class="h2">Fill it in</h2><div class="demo">
+<h3>Sydney renters survey (rebuilt questionnaire)</h3>
+<p class="hint">Fill it in to see how each answer is coded for analysis. Your answers stay in your browser and are not saved or sent anywhere.</p>
+<form id="sv">
+<div class="q"><label>1. Which area of Sydney do you rent in?</label><div class="opts">
+<label><input type="radio" name="area" value="1" required>Inner city</label><label><input type="radio" name="area" value="2">Eastern suburbs</label><label><input type="radio" name="area" value="3">Inner west</label><label><input type="radio" name="area" value="4">North shore</label><label><input type="radio" name="area" value="5">Western Sydney</label><label><input type="radio" name="area" value="6">Other</label></div></div>
+<div class="q"><label>2. Who do you live with?</label><div class="opts">
+<label><input type="radio" name="hh" value="1" required>Alone</label><label><input type="radio" name="hh" value="2">Partner</label><label><input type="radio" name="hh" value="3">Housemates</label><label><input type="radio" name="hh" value="4">Family with children</label></div></div>
+<div class="q"><label for="rent">3. Your share of the weekly rent (AUD)</label><input type="text" id="rent" inputmode="numeric" placeholder="e.g. 420" required></div>
+<div class="q"><label for="inc">4. Your weekly take-home income (AUD, optional)</label><input type="text" id="inc" inputmode="numeric" placeholder="e.g. 1200"></div>
+<div class="q"><label>5. How has your rent changed at your last renewal?</label><div class="opts">
+<label><input type="radio" name="chg" value="0" required>No change</label><label><input type="radio" name="chg" value="1">Up less than 5%</label><label><input type="radio" name="chg" value="2">Up 5 to 10%</label><label><input type="radio" name="chg" value="3">Up more than 10%</label><label><input type="radio" name="chg" value="9">Not renewed yet</label></div></div>
+<div class="q"><label>6. "Rent is a source of financial stress for me."</label><div class="opts">
+<label><input type="radio" name="stress" value="1" required>Strongly disagree</label><label><input type="radio" name="stress" value="2">Disagree</label><label><input type="radio" name="stress" value="3">Neutral</label><label><input type="radio" name="stress" value="4">Agree</label><label><input type="radio" name="stress" value="5">Strongly agree</label></div></div>
+<div class="q"><label>7. Because of rent, in the past 12 months have you... (select all that apply)</label><div class="opts">
+<label><input type="checkbox" name="cut" value="food">Cut back on food</label><label><input type="checkbox" name="cut" value="move">Moved further from work or study</label><label><input type="checkbox" name="cut" value="share">Taken on housemates</label><label><input type="checkbox" name="cut" value="work">Worked extra hours</label><label><input type="checkbox" name="cut" value="none">None of these</label></div></div>
+<div class="row2"><button type="submit">See how my answers are coded</button></div>
+</form>
+<div class="out" id="svOut"><div class="ans" id="svSum"></div><pre class="json" id="svJson"></pre></div>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('sv');
+  function num(id){var v=parseFloat(document.getElementById(id).value.replace(/[^0-9.]/g,''));return isNaN(v)?null:v;}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var g=function(n){var x=f.querySelector('input[name='+n+']:checked');return x?parseInt(x.value):null;};
+    var cuts=[].slice.call(f.querySelectorAll('input[name=cut]:checked')).map(function(x){return x.value;});
+    var rent=num('rent'),inc=num('inc');
+    var ratio=(rent&&inc)?Math.round(1000*rent/inc)/10:null;
+    var rec={area_code:g('area'),household_code:g('hh'),weekly_rent_aud:rent,weekly_income_aud:inc,rent_to_income_pct:ratio,
+      rent_stress_flag:ratio===null?null:(ratio>=30?1:0),renewal_change_code:g('chg'),stress_likert_1to5:g('stress'),
+      coping_food:+cuts.includes('food'),coping_moved:+cuts.includes('move'),coping_housemates:+cuts.includes('share'),coping_extra_work:+cuts.includes('work')};
+    var s=ratio===null?'Rent-to-income ratio not computed (income left blank), so this response is excluded from the affordability measure but kept for everything else.':
+      'Rent is '+ratio+'% of take-home income. The common 30% benchmark classifies this response as '+(ratio>=30?'<b>in rental stress</b>.':'<b>not in rental stress</b>.');
+    document.getElementById('svSum').innerHTML=s;
+    document.getElementById('svJson').textContent=JSON.stringify(rec,null,2);
+    document.getElementById('svOut').classList.add('on');
+  });
+})();
+</script>
 
-<h2 class="h2">Tools</h2><div class="tools big"><span>Survey design</span></div>
-<nav class="pn"><a href="agent.html">&larr; Live Assignment-Checking AI Agent</a><a href="crafter.html">Inventory Optimization for Crafter.com &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+
+
+<h2 class="h2">What I did</h2><ul class="det"><li>Analysis plan: share of renters above 30% rent-to-income by area and household type, stress scores by renewal increase, and which coping actions cluster together.</li></ul>
+
+<h2 class="h2">Tools</h2><div class="tools big"><span>Survey design</span><span>Questionnaire coding</span><span>JavaScript</span></div>
+<nav class="pn"><a href="recsys.html">&larr; Book Recommender System</a><a href="crafter.html">Inventory Optimization for Crafter.com &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

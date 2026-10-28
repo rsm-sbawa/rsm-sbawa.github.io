@@ -3,7 +3,7 @@
 <title>Peer Comparison Experiment | Simar Bawa</title><meta name="description" content="Dashboards often show people how peers performed. Does that actually make them more accurate?">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -16,8 +16,18 @@
 <section><h2><span class="ic">01</span>Problem</h2><p>Dashboards often show people how peers performed. Does that actually make them more accurate?</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Randomly split 40 participants into control and treatment, ran 11 counting tasks, measured effort and difficulty, and added a manipulation check.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>Treatment was 4.1 points more accurate (86.8% vs 82.7%), not significant at this size (p = 0.35). Only 44% of the treatment group noticed the peer information, so we specified a stronger design and a 200+ person study.</p></section></div>
+
+
 <h2 class="h2">Results</h2><figure class="fig"><img src="peer_accuracy.svg" alt="Each task&#x27;s accuracy by group, computed from the 40 raw responses."><figcaption>Each task&#x27;s accuracy by group, computed from the 40 raw responses.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Effort was slightly lower in the treatment group (2.50 vs 2.81 on a 4-point scale, p = 0.21).</li><li>Results here are recomputed from the raw responses.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Recomputing the test from the raw responses</figcaption><pre><code>from scipy import stats
+
+d = pd.read_excel(&quot;Group_20_Raw_Data.xlsx&quot;, sheet_name=&quot;Raw Data&quot;, header=1)
+control = d.loc[d.Group == &quot;Control&quot;, &quot;Accuracy_Mean&quot;]
+treated = d.loc[d.Group == &quot;Treatment&quot;, &quot;Accuracy_Mean&quot;]
+
+control.mean(), treated.mean()                    # 0.827, 0.868
+stats.ttest_ind(treated, control, equal_var=False)  # t = 0.95, p = 0.35</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Qualtrics</span><span>Python</span><span>t-tests</span><span>Excel</span></div>
-<nav class="pn"><a href="smobile.html">&larr; S-Mobile Churn and Retention Plan</a><a href="spark.html">Big Data on AWS: Spark and SageMaker &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="smobile.html">&larr; S-Mobile Churn and Retention Plan</a><a href="exportmap.html">ExportMap: Export Market Finder &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

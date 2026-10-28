@@ -3,7 +3,7 @@
 <title>S-Mobile Churn and Retention Plan | Simar Bawa</title><meta name="description" content="A mobile carrier losing about 2% of subscribers a month needed to know who will leave and what offer would keep them.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -16,8 +16,11 @@
 <section><h2><span class="ic">01</span>Problem</h2><p>A mobile carrier losing about 2% of subscribers a month needed to know who will leave and what offer would keep them.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Random forest (AUC 0.711) vs logistic regression (0.686), predictions calibrated to the real 2% churn rate, then permutation importance and partial dependence to find drivers.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>Handset age and overage charges drive churn most, so the plan targets handset upgrades and overage caps at high-risk customers, valued against a 5-year customer lifetime value of about SGD 1,000.</p></section></div>
+
+
 <h2 class="h2">Results</h2><figure class="fig"><img src="smobile_drivers.svg" alt="Permutation importance from the final random forest."><figcaption>Permutation importance from the final random forest.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Sized each offer for a 1 million subscriber base with cost, churn reduction and breakeven per customer.</li><li>Targeted offers only at the highest-risk deciles with the matching problem (for example, old handsets).</li></ul>
+
 <h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>Random forest</span><span>Partial dependence</span></div>
-<nav class="pn"><a href="cardfraud.html">&larr; Card Transaction Fraud Detection</a><a href="peer.html">Peer Comparison Experiment &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="intuit.html">&larr; Intuit QuickBooks Upgrade Campaign</a><a href="peer.html">Peer Comparison Experiment &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

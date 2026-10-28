@@ -3,7 +3,7 @@
 <title>NYC Property Assessment Anomaly Detection | Simar Bawa</title><meta name="description" content="Find mis-assessed properties in New York City&#x27;s valuation data with no fraud labels to learn from.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -15,9 +15,18 @@
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>Find mis-assessed properties in New York City&#x27;s valuation data with no fraud labels to learn from.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Cleaned 1,070,994 records, built 29 value-per-size variables, reduced them to 5 principal components (about 67% of variance) and scored records with a distance measure and an autoencoder.</p></section>
-<section><h2><span class="ic">03</span>Impact</h2><p>A ranked list of 1,044,492 properties, with z-score breakdowns that explain why each top property was flagged.</p></section></div>
-<h2 class="h2">Results</h2><div class="fig solo"><div class="thumb stat"><b>1.04M</b><span>properties scored for unusual assessments</span></div></div>
-<h2 class="h2">What I did</h2><ul class="det"><li>Excluded 26,502 government and institutional properties that aren&#x27;t comparable.</li></ul>
+<section><h2><span class="ic">03</span>Impact</h2><p>A ranked list of 1,044,492 properties. For each top-ranked property, a z-score breakdown shows exactly which value-per-size ratios look wrong, so an investigator knows where to start.</p></section></div>
+
+
+<h2 class="h2">Results</h2><figure class="fig light"><img src="nyc_zscores.jpg" alt="From my report: why one top-ranked Queens commercial building was flagged. Red bars are ratios more than 3 standard deviations from comparable properties."><figcaption>From my report: why one top-ranked Queens commercial building was flagged. Red bars are ratios more than 3 standard deviations from comparable properties.</figcaption></figure><figure class="fig light"><img src="nyc_fullval.jpg" alt="From my report: market values are extremely skewed (log scale), which is why every variable was normalized by property size and peer group."><figcaption>From my report: market values are extremely skewed (log scale), which is why every variable was normalized by property size and peer group.</figcaption></figure>
+<h2 class="h2">What I did</h2><ul class="det"><li>Excluded 26,502 government and institutional properties that aren&#x27;t comparable.</li><li>Imputed missing size and value fields by tax class, borough and building class.</li><li>Normalized 9 value-per-size ratios against ZIP code and tax class peers (18 more variables).</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Scoring step (simplified sketch)</figcaption><pre><code>Z = StandardScaler().fit_transform(df[ratio_vars])        # 29 engineered variables
+pca = PCA(n_components=5).fit(Z)                           # about 67% of variance
+P = StandardScaler().fit_transform(pca.transform(Z))
+
+score_distance = np.sqrt((P ** 2).sum(axis=1))             # how far from a typical property
+recon = autoencoder.predict(P)
+score_autoenc = np.sqrt(((P - recon) ** 2).sum(axis=1))    # how badly it is reconstructed</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>PCA</span><span>Autoencoder</span></div>
-<nav class="pn"><a href="health.html">&larr; Healthcare Treatment Cost-Effectiveness</a><a href="exportmap.html">ExportMap: Export Market Finder &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="snowflake.html">&larr; Procure-to-Pay ETL Pipeline in Snowflake</a><a href="health.html">Healthcare Treatment Cost-Effectiveness &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

@@ -3,7 +3,7 @@
 <title>FiTech: Testing Credit Card Offers | Simar Bawa</title><meta name="description" content="FiTech had 12 card offers and 3 credit-risk segments. Past campaigns couldn&#x27;t say which offer wins because they weren&#x27;t randomized and the market had changed.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -16,8 +16,17 @@
 <section><h2><span class="ic">01</span>Problem</h2><p>FiTech had 12 card offers and 3 credit-risk segments. Past campaigns couldn&#x27;t say which offer wins because they weren&#x27;t randomized and the market had changed.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Tested all 36 offer and segment cells with 4,000 prospects each, scored each cell on expected profit per email (response rate x lifetime value minus $0.50), then rolled the winner out per segment.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>$877K total profit. The rollout earned $846K against an $835K forecast and brought in about 23,800 cardholders worth $1.27M in lifetime value.</p></section></div>
+
+
 <h2 class="h2">Results</h2><figure class="fig"><img src="fitech_heatmap.svg" alt="Computed from the round 1 test responses and the case&#x27;s lifetime values. Each segment&#x27;s winning offer is boxed."><figcaption>Computed from the round 1 test responses and the case&#x27;s lifetime values. Each segment&#x27;s winning offer is boxed.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Customers prefer the low-APR, no-fee, fixed-rate card, but it isn&#x27;t the most profitable everywhere; higher-risk segments paid off with a higher APR.</li><li>Winners: offer 4 for low and medium risk, offer 12 for high risk.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>Scoring every offer and segment from the round 1 test (excerpt)</figcaption><pre><code>scored = (round1
+    .with_columns((pl.col(&quot;n_resp&quot;) / pl.col(&quot;n_sent&quot;)).alias(&quot;resp_rate&quot;))
+    .join(clv_long, on=[&quot;offer&quot;, &quot;bk_score&quot;])
+    .with_columns((pl.col(&quot;resp_rate&quot;) * pl.col(&quot;clv&quot;) - 0.50).alias(&quot;profit_per_email&quot;)))
+
+winners = (scored.sort(&quot;profit_per_email&quot;, descending=True)
+                 .group_by(&quot;bk_score&quot;).first())   # offer 4, offer 4, offer 12</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>Polars</span><span>statsmodels</span><span>Experiment design</span></div>
-<nav class="pn"><a href="tuango.html">&larr; Tuango: Who Should Get the Deal?</a><a href="intuit.html">Intuit QuickBooks Upgrade Campaign &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="appfraud.html">&larr; Application Fraud Detection</a><a href="tuango.html">Tuango: Who Should Get the Deal? &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>

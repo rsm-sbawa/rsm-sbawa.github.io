@@ -3,7 +3,7 @@
 <title>Big Data on AWS: Spark and SageMaker | Simar Bawa</title><meta name="description" content="4 million reviews are too many for one laptop, and a model is only useful once something can call it.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
 <nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
@@ -16,8 +16,20 @@
 <section><h2><span class="ic">01</span>Problem</h2><p>4 million reviews are too many for one laptop, and a model is only useful once something can call it.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>PySpark word-count pipeline on AWS EMR clusters reading from and writing to S3; XGBoost income classifier trained, tuned and deployed as a live endpoint on SageMaker.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>Moving from 1 to 3 worker nodes cut average runtime on 4,027,011 reviews by 59% (140s to 57s).</p></section></div>
+
+
 <h2 class="h2">Results</h2><figure class="fig"><img src="spark_runtime.svg" alt="Three timed runs per cluster setup."><figcaption>Three timed runs per cluster setup.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Removed an earnings column from the Census data that would have leaked the answer into the model.</li><li>Ran hyperparameter tuning jobs and served predictions on 124,843 test records from the endpoint.</li></ul>
+<h2 class="h2">Code</h2><figure class="code"><figcaption>PySpark word count on EMR (simplified)</figcaption><pre><code>from pyspark.sql.functions import col, explode, lower, regexp_replace, split, trim
+
+reviews = spark.read.json(&quot;s3://&lt;bucket&gt;/BookReviews_4M.json&quot;)      # 4,027,011 rows
+words = (reviews
+    .select(trim(lower(regexp_replace(&quot;reviewText&quot;, &quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;))).alias(&quot;sentence&quot;))
+    .select(explode(split(&quot;sentence&quot;, &quot; &quot;)).alias(&quot;word&quot;))
+    .filter(col(&quot;word&quot;) != &quot;&quot;))
+
+counts = words.groupBy(&quot;word&quot;).count().orderBy(&quot;count&quot;, ascending=False)
+counts.coalesce(1).write.csv(&quot;s3://&lt;bucket&gt;/results&quot;, header=True, mode=&quot;overwrite&quot;)</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>PySpark</span><span>AWS EMR</span><span>S3</span><span>SageMaker</span><span>XGBoost</span></div>
-<nav class="pn"><a href="peer.html">&larr; Peer Comparison Experiment</a><a href="snowflake.html">Procure-to-Pay ETL Pipeline in Snowflake &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer></body></html>
+<nav class="pn"><a href="exportmap.html">&larr; ExportMap: Export Market Finder</a><a href="snowflake.html">Procure-to-Pay ETL Pipeline in Snowflake &rarr;</a></nav>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>
