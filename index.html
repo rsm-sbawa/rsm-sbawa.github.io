@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simar Bawa | Business and Data Analyst</title>
+<meta name="description" content="Simar Bawa, business and data analyst. MS Business Analytics, UC San Diego, December 2026. Forecasting, dashboards, process automation and applied AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F7FA;
+  --ink:#182B49;
+  --ink-soft:#4A5B75;
+  --rule:#D6DDE7;
+  --gold:#C69214;
+  --gold-soft:#F3E3BC;
+  --white:#FFFFFF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration-color:var(--gold);text-underline-offset:3px;text-decoration-thickness:2px}
+a:hover{color:#0E1B30;text-decoration-color:var(--ink)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:15px}
+header.top .mark{font-weight:600;text-decoration:none}
+header.top nav a{margin-left:22px;text-decoration:none;color:var(--ink-soft)}
+header.top nav a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:56px 0 72px;border-bottom:1px solid var(--rule)}
+.hero h1{font:600 clamp(44px,6vw,72px)/1.02 "Literata",Georgia,serif;letter-spacing:-.02em;margin:0 0 22px}
+.hero p.lede{font-size:20px;line-height:1.5;color:var(--ink);max-width:30ch;margin:0 0 14px}
+.hero p.sub{color:var(--ink-soft);max-width:44ch;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;font-size:15px;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--white)}
+.btn.primary:hover{background:#0E1B30;color:var(--white)}
+.btn.ghost{color:var(--ink)}
+.btn.ghost:hover{background:var(--white)}
+
+figure.chart{margin:0;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:22px 22px 16px}
+figure.chart svg{width:100%;height:auto;display:block}
+figure.chart figcaption{font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin-top:12px}
+figure.chart figcaption strong{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;white-space:nowrap;font-size:13.5px;color:var(--ink-soft);margin-bottom:8px}
+.legend span::before{content:"";display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:7px;background:var(--ink-soft)}
+.legend .rec::before{background:var(--gold);height:4px}
+.legend .raw::before{background:repeating-linear-gradient(90deg,var(--ink-soft) 0 5px,transparent 5px 9px)}
+#recovered{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.8s .4s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+section{padding:72px 0;border-bottom:1px solid var(--rule)}
+section h2{font:600 32px/1.15 "Literata",Georgia,serif;margin:0 0 8px;letter-spacing:-.01em}
+section .intro{color:var(--ink-soft);max-width:60ch;margin:0 0 36px}
+
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:56px}
+.about p{max-width:62ch;margin:0 0 16px}
+.facts{list-style:none;padding:0;margin:0;font-size:15.5px}
+.facts li{padding:12px 0;border-top:1px solid var(--rule)}
+.facts li:last-child{border-bottom:1px solid var(--rule)}
+.facts b{display:block;font-weight:600}
+.facts span{color:var(--ink-soft)}
+
+.projects{display:grid;gap:0}
+.project{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:30px 0;border-top:1px solid var(--rule)}
+.project:last-child{border-bottom:1px solid var(--rule)}
+.project .num{font:600 44px/1 "Literata",Georgia,serif;color:var(--ink)}
+.project .num small{display:block;font:500 13.5px/1.4 "Public Sans",sans-serif;color:var(--ink-soft);margin-top:8px;max-width:20ch}
+.project h3{font:600 21px/1.3 "Literata",Georgia,serif;margin:0 0 6px}
+.project .ctx{font-size:14.5px;color:var(--ink-soft);margin:0 0 10px}
+.project p{margin:0;max-width:64ch}
+.tools{margin-top:12px;font-size:14px;color:var(--ink-soft)}
+
+ol.timeline{list-style:none;margin:0;padding:0;position:relative}
+ol.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+ol.timeline li{position:relative;padding:0 0 34px 40px;display:grid;grid-template-columns:1fr auto;column-gap:24px}
+ol.timeline li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+ol.timeline li:first-child::before{background:var(--gold);border-color:var(--gold)}
+ol.timeline h3{font:600 19px/1.35 "Literata",Georgia,serif;margin:0}
+ol.timeline .where{color:var(--ink-soft);font-size:15px;margin:2px 0 8px}
+ol.timeline .when{font-size:14.5px;color:var(--ink-soft);white-space:nowrap;padding-top:3px}
+ol.timeline p{grid-column:1 / -1;margin:0;max-width:68ch}
+
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.skills h3{font:600 18px/1.3 "Literata",Georgia,serif;margin:0 0 10px}
+.skills p{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+.contact{border-bottom:0;padding-bottom:40px}
+.contact .big{font:600 clamp(28px,4vw,40px)/1.15 "Literata",Georgia,serif;margin:0 0 18px;max-width:22ch}
+.contact ul{list-style:none;padding:0;margin:0 0 28px;font-size:17px}
+.contact li{margin:6px 0}
+footer{padding:28px 0 48px;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:28px}
+  .about{grid-template-columns:1fr;gap:28px}
+  .project{grid-template-columns:1fr;gap:12px}
+  .skills{grid-template-columns:1fr;gap:24px}
+  header.top nav{display:none}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  ol.timeline li{grid-template-columns:1fr}
+  ol.timeline .when{padding-top:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#">Simar Bawa</a>
+    <nav aria-label="Sections">
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div>
+      <h1>Simar Bawa</h1>
+      <p class="lede">Business and data analyst. I build forecasts, dashboards and automations that people actually use to make decisions.</p>
+      <p class="sub">MS Business Analytics (STEM), UC San Diego, graduating December 2026. Available to start in January 2027 and open to relocating anywhere in the US.</p>
+      <div class="actions">
+        <a class="btn primary" href="Simar_Bawa_Resume.pdf">Download resume (PDF)</a>
+        <a class="btn ghost" href="mailto:simarbawa2001@gmail.com">Email me</a>
+      </div>
+    </div>
+
+    <figure class="chart" aria-labelledby="chartcap">
+      <div class="legend" aria-hidden="true"><span class="raw">Recorded sales</span><span class="rec">Reconstructed demand</span></div>
+      <svg viewBox="0 0 520 260" role="img" aria-label="Line chart: recorded monthly sales drop to zero during stockouts, while reconstructed demand stays steady through those months.">
+        <g stroke="#D6DDE7" stroke-width="1">
+          <line x1="40" y1="30" x2="510" y2="30"/><line x1="40" y1="90" x2="510" y2="90"/><line x1="40" y1="150" x2="510" y2="150"/><line x1="40" y1="210" x2="510" y2="210"/>
+        </g>
+        <rect x="216" y="20" width="60" height="196" fill="#F3E3BC" opacity=".55"/>
+        <rect x="392" y="20" width="40" height="196" fill="#F3E3BC" opacity=".55"/>
+        <text x="246" y="236" text-anchor="middle" font-family="Public Sans" font-size="12" fill="#4A5B75">stockout</text>
+        <text x="412" y="236" text-anchor="middle" font-family="Public Sans" font-size="12" fill="#4A5B75">stockout</text>
+        <polyline fill="none" stroke="#4A5B75" stroke-width="2" stroke-dasharray="6 5" points="40,120 80,104 120,112 160,92 200,100 236,210 256,210 290,96 330,84 370,98 404,210 420,210 450,88 510,80"/>
+        <polyline id="recovered" fill="none" stroke="#C69214" stroke-width="3.5" stroke-linejoin="round" points="40,120 80,104 120,112 160,92 200,100 236,94 256,90 290,96 330,84 370,98 404,90 420,92 450,88 510,80"/>
+        <text x="40" y="254" font-family="Public Sans" font-size="12" fill="#4A5B75">months</text>
+        <text x="510" y="254" text-anchor="end" font-family="Public Sans" font-size="12" fill="#4A5B75">illustrative shape</text>
+      </svg>
+      <figcaption id="chartcap"><strong>The finding behind my capstone.</strong> Crafter.com's system recorded out-of-stock months as zero sales, so every forecast learned to expect too little. Reconstructing those months recovered about 6% of hidden demand for the best-selling products.</figcaption>
+    </figure>
+  </div>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="about">
+      <div>
+        <h2 id="about-h">Why I do this</h2>
+      </div>
+      <div>
+        <p>I studied International Relations and Sociology at the University of Sydney. What moved me into analytics was watching my father run his business without the data he needed, and seeing businesses around us close for the same reason.</p>
+        <p>Since then I have worked across grocery retail, compliance, consulting and digital transformation in Australia and the US. The common thread is simple: find where the numbers are misleading people, fix it, and hand over something a team can keep using without me.</p>
+        <ul class="facts">
+          <li><b>UC San Diego, Rady School of Management</b><span>MS Business Analytics (STEM), GPA 3.75, July 2025 to December 2026</span></li>
+          <li><b>The University of Sydney</b><span>BA, International Relations and Sociology (Double Major), 2023</span></li>
+          <li><b>Work authorization</b><span>F-1 with OPT from January 2027, eligible for the 24-month STEM OPT extension</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h">
+    <h2 id="work-h">Selected projects</h2>
+    <p class="intro">Graduate and independent work, each measured against a baseline so the result means something.</p>
+    <div class="projects">
+      <article class="project">
+        <div class="num">3.8x<small>projected return on a $15K inventory budget</small></div>
+        <div>
+          <h3>Inventory optimization for Crafter.com</h3>
+          <p class="ctx">MSBA capstone, client consulting project. Team lead, four people, spring 2026.</p>
+          <p>Analyzed 176 products and found stockouts were being recorded as zero demand. Built an XGBoost demand forecast (out-of-sample R² 0.48, MAPE about 12%) that beat SARIMA, Ridge and a naive baseline, then a budget-constrained buy list, an interactive dashboard and an Excel planning toolkit the client's team could run themselves.</p>
+          <p class="tools">Python, SQL, XGBoost, Tableau, Excel</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="num">88%<small>answer accuracy on a 40-question test set</small></div>
+        <div>
+          <h3>Product assistant with retrieval-augmented generation</h3>
+          <p class="ctx">UCSD MSBA elective, team project, 2026.</p>
+          <p>Built a RAG assistant over product data that retrieves the right documents and calls tools to answer questions, then scored it against a ground-truth test set instead of judging it by demos.</p>
+          <p class="tools">LlamaIndex, Claude, tool calling, Python</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="num">89%<small>accuracy checking assignments</small></div>
+        <div>
+          <h3>Live assignment-checking AI agent</h3>
+          <p class="ctx">Solo workshop project.</p>
+          <p>Built a live agent that reviews assignments and returns feedback, automating a manual checking workflow.</p>
+          <p class="tools">Claude, LangChain, Python</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="num">58.9%<small>of fraud caught in the top 3% of flagged records</small></div>
+        <div>
+          <h3>Fraud detection model</h3>
+          <p class="ctx">Fraud Analytics coursework, 2026.</p>
+          <p>Built a LightGBM model on 1 million credit card and phone applications (1.44% fraud rate), from data quality checks and feature selection to out-of-time validation. That is about 20 times what a random ranking would catch.</p>
+          <p class="tools">Python, LightGBM, feature engineering</p>
+        </div>
+      </article>
+      <article class="project">
+        <div class="num">ICER<small>cost per quality-adjusted life year</small></div>
+        <div>
+          <h3>Healthcare treatment decision models</h3>
+          <p class="ctx">Healthcare Analytics coursework, 2026.</p>
+          <p>Built Markov models and decision trees comparing diabetes and hypertension treatments, using patient risk factors to estimate costs, QALYs and cost-effectiveness ratios.</p>
+          <p class="tools">TreeAge Pro</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <p class="intro">Most recent first.</p>
+    <ol class="timeline">
+      <li>
+        <div><h3>Data and Business Insights Analyst</h3><p class="where">Supabarn, Sydney</p></div>
+        <span class="when">Mar to Jul 2025</span>
+        <p>Ran pricing and competitive analysis that cut markdown costs by 10%. Built Power BI and SQL dashboards that reduced forecast error by 18% and saved 10+ hours a week. Handled inbound and outbound customer calls.</p>
+      </li>
+      <li>
+        <div><h3>Product and Data Analyst (Contract)</h3><p class="where">Intertek SAI Global, Sydney</p></div>
+        <span class="when">May to Nov 2024</span>
+        <p>Automated risk reporting with SQL, Python and Power Query, saving $250K in staff time. Helped migrate compliance data out of Salesforce and validated 100+ migrated reports, cutting audit preparation time by 35%.</p>
+      </li>
+      <li>
+        <div><h3>AI and Digital Transformation Intern (Part-time)</h3><p class="where">Sequent Global Technologies, New Jersey (remote)</p></div>
+        <span class="when">Jan to Oct 2024</span>
+        <p>Automated client workflows, improving efficiency by 28% and response times by 35%. Led HubSpot and Microsoft Teams rollouts with workshops that raised adoption by 40%.</p>
+      </li>
+      <li>
+        <div><h3>Business Strategy Analyst Intern (Part-time)</h3><p class="where">BPM Vision, Sydney (remote)</p></div>
+        <span class="when">Oct 2023 to Sep 2024</span>
+        <p>Analyzed 1,000+ customer feedback records to guide planogram changes that raised client retention by 12%. Wrote training documentation that cut ramp-up time by 25%.</p>
+      </li>
+      <li>
+        <div><h3>Retail Strategy and Operations Assistant (Part-time)</h3><p class="where">Lovisa, Sydney</p></div>
+        <span class="when">Feb 2023 to Feb 2024</span>
+        <p>Automated KPI reporting for 50+ stores, lifting reporting efficiency by 30%, and supported a 15% lift in campaign engagement.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <p class="intro">Tools I use every week, and the work I use them for.</p>
+    <div class="skills">
+      <div><h3>Data and code</h3><p>SQL, Python (pandas), R, Excel, Power Query, Snowflake</p></div>
+      <div><h3>Dashboards and reporting</h3><p>Power BI, Tableau, Google Analytics, Salesforce, HubSpot</p></div>
+      <div><h3>Modeling and AI</h3><p>Forecasting (XGBoost, SARIMA), optimization, LightGBM, RAG with LlamaIndex, agents with LangChain and Claude</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h" class="big">Hiring for an analyst role starting in 2027? Let's talk.</h2>
+    <ul>
+      <li>Email: <a href="mailto:simarbawa2001@gmail.com">simarbawa2001@gmail.com</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/simar-bawa-8979701a9">linkedin.com/in/simar-bawa-8979701a9</a></li>
+      <li>Phone: <a href="tel:+18588287924">(858) 828-7924</a></li>
+    </ul>
+    <a class="btn primary" href="Simar_Bawa_Resume.pdf">Download resume (PDF)</a>
+  </section>
+  </main>
+
+  <footer>Simar Bawa, San Diego, California.</footer>
+</div>
+</body>
+</html>
