@@ -3,20 +3,20 @@
 <title>Application Fraud Detection | Simar Bawa</title><meta name="description" content="A review team can only check a small share of applications. The model has to rank 1 million applications so the riskiest 3% hold as much fraud as possible.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css"></head><body>
+<link rel="stylesheet" href="style.css"></head><body>
 <header class="nav"><div class="wrap navin">
-<a class="brand" href="../index.html"><span class="mono">SB</span>Simar Bawa</a>
-<nav aria-label="Main"><a href="../index.html#about">About</a><a href="../index.html#experience">Experience</a><a href="../index.html#projects">Projects</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></nav>
-<a class="btn sm" href="../Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
+<a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
+<nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
+<a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
-<a class="back" href="../index.html#projects">&larr; Back to projects</a>
+<a class="back" href="index.html#projects">&larr; Back to projects</a>
 <h1>Application Fraud Detection</h1><p class="lead">Fraud Analytics. Individual project on 1,000,000 credit card and phone applications.</p>
 <div class="row"><span class="pill">Forecasting and risk</span><span class="pill st">Completed</span></div>
 <div class="pai">
 <section><h2><span class="ic">01</span>Problem</h2><p>A review team can only check a small share of applications. The model has to rank 1 million applications so the riskiest 3% hold as much fraud as possible.</p></section>
 <section><h2><span class="ic">02</span>Approach</h2><p>Found and neutralized placeholder values (one birth date appeared 126,568 times), built 1,841 identity-linking and velocity variables, cut them to 20, and compared 5 model families on later months the models never saw.</p></section>
 <section><h2><span class="ic">03</span>Impact</h2><p>LightGBM catches 58.9% of fraud in the top 3%, about 20 times random review. A 1.5% review cutoff saves an estimated $5.3M net on the 2-month holdout.</p></section></div>
-<h2 class="h2">Results</h2><figure class="fig"><img src="../img/appfraud_models.svg" alt="Train, test and out-of-time results for each model family. The gold bar is the chosen model."><figcaption>Train, test and out-of-time results for each model family. The gold bar is the chosen model.</figcaption></figure>
+<h2 class="h2">Results</h2><figure class="fig"><img src="appfraud_models.svg" alt="Train, test and out-of-time results for each model family. The gold bar is the chosen model."><figcaption>Train, test and out-of-time results for each model family. The gold bar is the chosen model.</figcaption></figure>
 <h2 class="h2">What I did</h2><ul class="det"><li>Data: 1,000,000 applications with 14,393 fraud cases (1.44%).</li><li>Feature selection: KS filter, then forward wrapper selection scored on fraud caught in the top 3%.</li><li>Picked LightGBM for the best out-of-time result and the smallest drop from test to later months.</li><li>Cost curves assumed $4,000 lost per missed fraud and $100 per false alarm.</li></ul>
 <h2 class="h2">Tools</h2><div class="tools big"><span>Python</span><span>LightGBM</span><span>scikit-learn</span><span>Feature engineering</span></div>
 <nav class="pn"><a href="h1b.html">&larr; H-1B Sponsorship Insights Dashboards</a><a href="tuango.html">Tuango: Who Should Get the Deal? &rarr;</a></nav>
