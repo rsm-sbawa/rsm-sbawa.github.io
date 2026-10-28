@@ -3,10 +3,16 @@
 <title>Big Data on AWS: Spark and SageMaker | Simar Bawa</title><meta name="description" content="4 million reviews are too many for one laptop, and a model is only useful once something can call it.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css"></head><body>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="demo.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="favicon-180.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Simar Bawa">
+<meta property="og:title" content="Big Data on AWS: Spark and SageMaker | Simar Bawa"><meta property="og:description" content="4 million reviews are too many for one laptop, and a model is only useful once something can call it.">
+<meta property="og:image" content="https://rsm-sbawa.github.io/og_image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://rsm-sbawa.github.io/spark.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://rsm-sbawa.github.io/og_image.png">
+<link rel="canonical" href="https://rsm-sbawa.github.io/spark.html"></head><body>
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="index.html"><span class="mono">SB</span>Simar Bawa</a>
-<nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
+<nav aria-label="Main"><a href="index.html#about">About</a><a href="index.html#experience">Experience</a><a href="index.html#projects">Projects</a><a href="index.html#writing">Writing</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav>
 <a class="btn sm" href="Simar_Bawa_Resumee.pdf">Download Resume</a></div></header>
 <main class="wrap detail">
 <a class="back" href="index.html#projects">&larr; Back to projects</a>
@@ -32,4 +38,4 @@ counts = words.groupBy(&quot;word&quot;).count().orderBy(&quot;count&quot;, asce
 counts.coalesce(1).write.csv(&quot;s3://&lt;bucket&gt;/results&quot;, header=True, mode=&quot;overwrite&quot;)</code></pre></figure>
 <h2 class="h2">Tools</h2><div class="tools big"><span>PySpark</span><span>AWS EMR</span><span>S3</span><span>SageMaker</span><span>XGBoost</span></div>
 <nav class="pn"><a href="exportmap.html">&larr; ExportMap: Export Market Finder</a><a href="snowflake.html">Procure-to-Pay ETL Pipeline in Snowflake &rarr;</a></nav>
-</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script></body></html>
+</main><footer class="wrap foot">Simar Bawa, San Diego, California. Charts are drawn from my own project data and reports.</footer><script src="effects.js" defer></script><script data-goatcounter="https://simarbawa.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body></html>
